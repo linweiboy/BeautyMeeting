@@ -10,7 +10,6 @@ import UIKit
 
 class HomeNoticeView: UIView {
   
-  var moreNoticeClick:(()->())!
   var passCurrentIndexClosure:((_ currentIndex:Int) -> Void)?
   
   var scrollIntervalTime:Double = 5 //动画间隔  多久执行一次动画 外部可设置 默认5秒
@@ -28,13 +27,22 @@ class HomeNoticeView: UIView {
     
     self.backgroundColor = .white
     //小喇叭
-    let bellIV = UIImageView(image: UIImage(named: "Trumpet"))
+    let image = UIImage(named: "rectangle")
+    let bellIV = UIImageView(image: image)
     self.addSubview(bellIV)
     bellIV.snp.makeConstraints { (make) in
-      make.left.equalTo(self).offset(24)
+      make.left.equalTo(self).offset(15)
       make.centerY.equalTo(self)
-      make.width.equalTo(17)
-      make.height.equalTo(15)
+      make.width.equalTo((image?.width)!)
+      make.height.equalTo((image?.height)!)
+    }
+    
+    let titleLB = UILabel()
+    titleLB.decorateStyleOfLB(title: "公告：", textColor: .black, textFont: 12.ratioHeight)
+    self.addSubview(titleLB)
+    titleLB.snp.makeConstraints { (make) in
+      make.left.equalTo(bellIV.snp.right).offset(5)
+      make.centerY.equalTo(self)
     }
     
     self.addSubview(mainBackScrollView)
@@ -44,20 +52,8 @@ class HomeNoticeView: UIView {
     mainBackScrollView.snp.makeConstraints { (make) in
       //15+39+10
       make.top.bottom.equalTo(0)
-      make.left.equalTo(45)
+      make.left.equalTo(titleLB.snp.right).offset(3)
       make.right.equalTo(-64.ratioWidth)
-    }
-    
-    let moreDetailBT = UIButton(type: .custom)
-    addSubview(moreDetailBT)
-    moreDetailBT.addTarget(self, action: #selector(moreDetailBTClick), for: .touchUpInside)
-    moreDetailBT.decorateStyleOfBT(title: "更多", textColor: .tipText, textFont: 11.ratioHeight)
-    moreDetailBT.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -25)
-    moreDetailBT.snp.makeConstraints { (make) in
-      make.centerY.equalTo(self)
-      make.right.equalTo(-15)
-      make.height.equalTo(16.ratioHeight)
-      make.width.equalTo(40.ratioWidth)
     }
     
   }
@@ -151,12 +147,6 @@ class HomeNoticeView: UIView {
       passCurrentIndexClosure!(passIndex)
     }
   }
-  
-  
-  @objc func moreDetailBTClick() {
-    moreNoticeClick()
-  }
-  
   
   deinit {
     self.scrollTimer?.invalidate()

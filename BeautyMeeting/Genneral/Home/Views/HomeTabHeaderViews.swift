@@ -37,9 +37,6 @@ class HomeTabFirstHeaderView: UITableViewHeaderFooterView, ReusableView {
     
     //广告视图
     addSubview(noticeView)
-    noticeView.moreNoticeClick = {[unowned self] in
-      if self.noticeClickClosure != nil {self.noticeClickClosure!(.More,0)}
-    }
     noticeView.passCurrentIndexClosure = {[unowned self] index in
       if self.noticeClickClosure != nil {self.noticeClickClosure!(.Deatil,index)}
     }
@@ -79,15 +76,25 @@ class CustomTabHeaderView: UIView {
     super.init(frame: frame)
     self.backgroundColor = .white
     
+    let image = UIImage(named: "rectangle")
+    let bellIV = UIImageView(image: image)
+    self.addSubview(bellIV)
+    bellIV.snp.makeConstraints { (make) in
+      make.left.equalTo(self).offset(15)
+      make.centerY.equalTo(self)
+      make.width.equalTo((image?.width)!)
+      make.height.equalTo((image?.height)!+8)
+    }
+    
     addSubview(titleNameLB)
     titleNameLB.decorateStyleOfLB(title: "", textColor:  .title, textFont: 15.ratioHeight)
     titleNameLB.snp.makeConstraints { (make) in
       make.centerY.equalTo(self)
-      make.left.equalTo(15.ratioHeight)
+      make.left.equalTo(bellIV.snp.right).offset(4)
     }
     
     addSubview(moreTB)
-    moreTB.decorateStyleOfBT(title: "更多", textColor: .tipText, textFont: 11.ratioHeight)
+    moreTB.decorateStyleOfBT(title: "更多", textColor: .main, textFont: 11.ratioHeight)
     moreTB.addTarget(self, action: #selector(moreClick), for: .touchUpInside)
     moreTB.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -25)
     moreTB.snp.makeConstraints { (make) in

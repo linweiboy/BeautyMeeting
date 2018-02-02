@@ -99,3 +99,18 @@ extension UIButton {
   }
   
 }
+
+public class RoundCornerIMV: UIImageView {
+  public var btRadius:CGFloat = 5
+  override public func draw(_ rect: CGRect) {
+    super.draw(rect)
+    let maskPath = UIBezierPath(roundedRect: rect, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: btRadius, height: btRadius))
+    let maskLayer = CAShapeLayer()
+    maskLayer.frame = rect; //设置大小
+    maskLayer.path = maskPath.cgPath;  //设置图形样子
+    self.layer.mask = maskLayer;
+    
+  }
+  
+}
+

@@ -52,13 +52,41 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol {
 
 extension HomeVC:UITableViewDelegate,UITableViewDataSource {
   
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 3
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 8
+    if section == 0 {
+      return 4
+    }else if section == 1{
+      return 3
+    }else if section == 2{
+      return 2
+    }
+    return 0
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    switch indexPath.section {
+    case 0:
+      return 270
+    case 1:
+      return 220
+    default:break
+    }
+    return 45
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
-    return cell
+    if indexPath.section == 0 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: HomeMeiDuCell.reuseIdentifier) as! HomeMeiDuCell
+      return cell
+    }else if indexPath.section == 1{
+      let cell = tableView.dequeueReusableCell(withIdentifier: HomeActiveCell.reuseIdentifier) as! HomeActiveCell
+      return cell
+    }
+    return UITableViewCell()
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -88,16 +116,28 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       let firstView = CustomTabHeaderView()
       firstHeaderView.addSubview(firstView)
       firstView.moreClickClosure = {[unowned self] in self.moreClick(section)}
-      firstView.showTitleDateStr("财富推荐",moreLBIsHidden: false)
+      firstView.showTitleDateStr("每日美读",moreLBIsHidden: false)
       firstView.snp.makeConstraints({ (make) in
         make.top.equalTo(popularizeView.snp.bottom).offset(5.ratioHeight)
         make.left.right.bottom.equalTo(firstHeaderView)
       })
       return firstHeaderView
+    case 1:
+      let TwoHeaderView = CustomTabHeaderView()
+      TwoHeaderView.moreClickClosure = {[unowned self] in self.moreClick(section)}
+      TwoHeaderView.showTitleDateStr("最新活动", moreLBIsHidden: false)
+      return TwoHeaderView
+    case 2:
+      let ThreeHeaderView = CustomTabHeaderView()
+      ThreeHeaderView.showTitleDateStr("猜你喜欢", moreLBIsHidden: true)
+      return ThreeHeaderView
     default:return UIView()
     }
   }
-
+  
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return UIView()
+  }
   
 }
 
@@ -115,6 +155,9 @@ extension HomeVC {
     mainTableView.backgroundColor =  .backGround
     mainTableView.registerHeadCell(HomeTabFirstHeaderView.self)
     view.addSubview(mainTableView)
+    mainTableView.register(HomeMeiDuCell.self)
+    mainTableView.register(HomeActiveCell.self)
+    mainTableView.register(HomeGuessCell.self)
     mainTableView.snp.makeConstraints { (make) in
       make.left.right.bottom.equalTo(view)
       make.top.equalTo(0)

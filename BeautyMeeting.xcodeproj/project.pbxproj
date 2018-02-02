@@ -53,6 +53,7 @@
 		955AA7742021D57000E8E7A9 /* HomeNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7702021D57000E8E7A9 /* HomeNoticeView.swift */; };
 		955AA7752021D57000E8E7A9 /* NavTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7712021D57000E8E7A9 /* NavTitleView.swift */; };
 		955AA7772021EFAD00E8E7A9 /* HomeTabHeaderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7762021EFAD00E8E7A9 /* HomeTabHeaderViews.swift */; };
+		955AA7792023F76600E8E7A9 /* HomeCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7782023F76600E8E7A9 /* HomeCells.swift */; };
 		B4D034A724D5E183F88EF80A /* Pods_BeautyMeeting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		955AA7702021D57000E8E7A9 /* HomeNoticeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoticeView.swift; sourceTree = "<group>"; };
 		955AA7712021D57000E8E7A9 /* NavTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavTitleView.swift; sourceTree = "<group>"; };
 		955AA7762021EFAD00E8E7A9 /* HomeTabHeaderViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabHeaderViews.swift; sourceTree = "<group>"; };
+		955AA7782023F76600E8E7A9 /* HomeCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCells.swift; sourceTree = "<group>"; };
 		C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautyMeeting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -243,6 +245,7 @@
 		955AA72B202194DF00E8E7A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				955AA7782023F76600E8E7A9 /* HomeCells.swift */,
 				955AA76F2021D57000E8E7A9 /* AdvertBannerView.swift */,
 				955AA7762021EFAD00E8E7A9 /* HomeTabHeaderViews.swift */,
 				955AA7702021D57000E8E7A9 /* HomeNoticeView.swift */,
@@ -545,6 +548,7 @@
 				955AA6BF20186F1300E8E7A9 /* ColorDefine.swift in Sources */,
 				955AA75F2021B48A00E8E7A9 /* UILabelExtension.swift in Sources */,
 				955AA75E2021B48A00E8E7A9 /* UIButtonExtension.swift in Sources */,
+				955AA7792023F76600E8E7A9 /* HomeCells.swift in Sources */,
 				955AA7602021B48A00E8E7A9 /* UITableViewExtension.swift in Sources */,
 				955AA7772021EFAD00E8E7A9 /* HomeTabHeaderViews.swift in Sources */,
 				955AA6C220186F1300E8E7A9 /* PlatformKey.swift in Sources */,
