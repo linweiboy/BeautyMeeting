@@ -54,6 +54,21 @@
 		955AA7752021D57000E8E7A9 /* NavTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7712021D57000E8E7A9 /* NavTitleView.swift */; };
 		955AA7772021EFAD00E8E7A9 /* HomeTabHeaderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7762021EFAD00E8E7A9 /* HomeTabHeaderViews.swift */; };
 		955AA7792023F76600E8E7A9 /* HomeCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7782023F76600E8E7A9 /* HomeCells.swift */; };
+		955AA77B2026F2C200E8E7A9 /* DailyReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA77A2026F2C200E8E7A9 /* DailyReadVC.swift */; };
+		955AA77D2027018900E8E7A9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA77C2027018900E8E7A9 /* CoreFoundation.framework */; };
+		955AA77F2027019300E8E7A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA77E2027019200E8E7A9 /* CFNetwork.framework */; };
+		955AA781202701A400E8E7A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA780202701A400E8E7A9 /* UIKit.framework */; };
+		955AA783202701BA00E8E7A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA782202701B900E8E7A9 /* Foundation.framework */; };
+		955AA785202701C900E8E7A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA784202701C900E8E7A9 /* QuartzCore.framework */; };
+		955AA787202701D500E8E7A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA786202701D500E8E7A9 /* CoreGraphics.framework */; };
+		955AA789202701F000E8E7A9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955AA788202701F000E8E7A9 /* UserNotifications.framework */; };
+		955AA78B20270C4D00E8E7A9 /* DailyReadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA78A20270C4D00E8E7A9 /* DailyReadCell.swift */; };
+		955AA78D2029936700E8E7A9 /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA78C2029936700E8E7A9 /* IntroductionVC.swift */; };
+		955AA78F2029939000E8E7A9 /* IntroductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA78E2029939000E8E7A9 /* IntroductionCell.swift */; };
+		955AA791202996A000E8E7A9 /* UnionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA790202996A000E8E7A9 /* UnionCell.swift */; };
+		955AA793202996C000E8E7A9 /* UnionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA792202996C000E8E7A9 /* UnionVC.swift */; };
+		955AA79520299E1D00E8E7A9 /* ActivityListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA79420299E1D00E8E7A9 /* ActivityListVC.swift */; };
+		955AA79720299E3400E8E7A9 /* ActivityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA79620299E3400E8E7A9 /* ActivityViews.swift */; };
 		B4D034A724D5E183F88EF80A /* Pods_BeautyMeeting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +129,21 @@
 		955AA7712021D57000E8E7A9 /* NavTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavTitleView.swift; sourceTree = "<group>"; };
 		955AA7762021EFAD00E8E7A9 /* HomeTabHeaderViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabHeaderViews.swift; sourceTree = "<group>"; };
 		955AA7782023F76600E8E7A9 /* HomeCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCells.swift; sourceTree = "<group>"; };
+		955AA77A2026F2C200E8E7A9 /* DailyReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReadVC.swift; sourceTree = "<group>"; };
+		955AA77C2027018900E8E7A9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		955AA77E2027019200E8E7A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		955AA780202701A400E8E7A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		955AA782202701B900E8E7A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		955AA784202701C900E8E7A9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		955AA786202701D500E8E7A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		955AA788202701F000E8E7A9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		955AA78A20270C4D00E8E7A9 /* DailyReadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReadCell.swift; sourceTree = "<group>"; };
+		955AA78C2029936700E8E7A9 /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
+		955AA78E2029939000E8E7A9 /* IntroductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionCell.swift; sourceTree = "<group>"; };
+		955AA790202996A000E8E7A9 /* UnionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionCell.swift; sourceTree = "<group>"; };
+		955AA792202996C000E8E7A9 /* UnionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionVC.swift; sourceTree = "<group>"; };
+		955AA79420299E1D00E8E7A9 /* ActivityListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListVC.swift; sourceTree = "<group>"; };
+		955AA79620299E3400E8E7A9 /* ActivityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViews.swift; sourceTree = "<group>"; };
 		C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautyMeeting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +152,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955AA789202701F000E8E7A9 /* UserNotifications.framework in Frameworks */,
+				955AA787202701D500E8E7A9 /* CoreGraphics.framework in Frameworks */,
+				955AA785202701C900E8E7A9 /* QuartzCore.framework in Frameworks */,
+				955AA783202701BA00E8E7A9 /* Foundation.framework in Frameworks */,
+				955AA781202701A400E8E7A9 /* UIKit.framework in Frameworks */,
+				955AA77F2027019300E8E7A9 /* CFNetwork.framework in Frameworks */,
+				955AA77D2027018900E8E7A9 /* CoreFoundation.framework in Frameworks */,
 				B4D034A724D5E183F88EF80A /* Pods_BeautyMeeting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +225,10 @@
 			children = (
 				955AA72B202194DF00E8E7A9 /* Views */,
 				955AA6962018678100E8E7A9 /* HomeVC.swift */,
+				955AA77A2026F2C200E8E7A9 /* DailyReadVC.swift */,
+				955AA78C2029936700E8E7A9 /* IntroductionVC.swift */,
+				955AA792202996C000E8E7A9 /* UnionVC.swift */,
+				955AA79420299E1D00E8E7A9 /* ActivityListVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -251,6 +292,10 @@
 				955AA7702021D57000E8E7A9 /* HomeNoticeView.swift */,
 				955AA7712021D57000E8E7A9 /* NavTitleView.swift */,
 				955AA76E2021D56F00E8E7A9 /* PopularizeView.swift */,
+				955AA78A20270C4D00E8E7A9 /* DailyReadCell.swift */,
+				955AA78E2029939000E8E7A9 /* IntroductionCell.swift */,
+				955AA790202996A000E8E7A9 /* UnionCell.swift */,
+				955AA79620299E3400E8E7A9 /* ActivityViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -363,6 +408,13 @@
 		A5E753533C06CC66267F0471 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				955AA788202701F000E8E7A9 /* UserNotifications.framework */,
+				955AA786202701D500E8E7A9 /* CoreGraphics.framework */,
+				955AA784202701C900E8E7A9 /* QuartzCore.framework */,
+				955AA782202701B900E8E7A9 /* Foundation.framework */,
+				955AA780202701A400E8E7A9 /* UIKit.framework */,
+				955AA77E2027019200E8E7A9 /* CFNetwork.framework */,
+				955AA77C2027018900E8E7A9 /* CoreFoundation.framework */,
 				C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */,
 			);
 			name = Frameworks;
@@ -519,6 +571,7 @@
 				955AA6972018678100E8E7A9 /* HomeVC.swift in Sources */,
 				955AA76B2021B48A00E8E7A9 /* SocialShareHelper.swift in Sources */,
 				955AA7612021B48A00E8E7A9 /* UITextFieldExtension.swift in Sources */,
+				955AA79720299E3400E8E7A9 /* ActivityViews.swift in Sources */,
 				955AA75C2021B48A00E8E7A9 /* Logging.m in Sources */,
 				955AA6C320186F1300E8E7A9 /* NotificationName.swift in Sources */,
 				955AA76C2021B48A00E8E7A9 /* SPWaterProgressIndicatorView.m in Sources */,
@@ -533,20 +586,27 @@
 				955AA76A2021B48A00E8E7A9 /* SignHelper.swift in Sources */,
 				955AA7672021B48A00E8E7A9 /* CIContext+CIContext_issue.m in Sources */,
 				955AA75A2021B48A00E8E7A9 /* Aspects.m in Sources */,
+				955AA78F2029939000E8E7A9 /* IntroductionCell.swift in Sources */,
+				955AA78D2029936700E8E7A9 /* IntroductionVC.swift in Sources */,
 				955AA76D2021B48A00E8E7A9 /* UtilsAdd.swift in Sources */,
 				955AA7632021B48A00E8E7A9 /* ModelHandleProtocol.swift in Sources */,
 				955AA7692021B48A00E8E7A9 /* NotificationCenterHelper.swift in Sources */,
+				955AA77B2026F2C200E8E7A9 /* DailyReadVC.swift in Sources */,
 				955AA69B201867AD00E8E7A9 /* VideoVC.swift in Sources */,
 				955AA7622021B48A00E8E7A9 /* UIViewControllerExtension.swift in Sources */,
 				955AA6622018601900E8E7A9 /* AppDelegate.swift in Sources */,
 				955AA6902018655300E8E7A9 /* MainTabBarVC.swift in Sources */,
 				955AA7652021B48A00E8E7A9 /* UIViewControllerProtocol.swift in Sources */,
 				955AA6C120186F1300E8E7A9 /* URLPath.swift in Sources */,
+				955AA79520299E1D00E8E7A9 /* ActivityListVC.swift in Sources */,
+				955AA78B20270C4D00E8E7A9 /* DailyReadCell.swift in Sources */,
 				955AA6C520186F1300E8E7A9 /* Constants.swift in Sources */,
 				955AA7742021D57000E8E7A9 /* HomeNoticeView.swift in Sources */,
+				955AA793202996C000E8E7A9 /* UnionVC.swift in Sources */,
 				955AA6C020186F1300E8E7A9 /* FontDefine.swift in Sources */,
 				955AA6BF20186F1300E8E7A9 /* ColorDefine.swift in Sources */,
 				955AA75F2021B48A00E8E7A9 /* UILabelExtension.swift in Sources */,
+				955AA791202996A000E8E7A9 /* UnionCell.swift in Sources */,
 				955AA75E2021B48A00E8E7A9 /* UIButtonExtension.swift in Sources */,
 				955AA7792023F76600E8E7A9 /* HomeCells.swift in Sources */,
 				955AA7602021B48A00E8E7A9 /* UITableViewExtension.swift in Sources */,

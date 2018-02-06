@@ -150,6 +150,7 @@ class HomeActiveCell: UITableViewCell, ReusableView {
 class HomeGuessCell: UITableViewCell, ReusableView {
   
   fileprivate let guessIMV = UIImageView()
+  fileprivate let titLB = UILabel()
   
   func showData() {
 //    guessIMV.kf.setImage(with: URL(string: model.imgUrl), placeholder: UIImage(named: "img_replace"))
@@ -158,15 +159,33 @@ class HomeGuessCell: UITableViewCell, ReusableView {
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
+    addSubview(titLB)
+    titLB.decorateStyleOfLB(title: "最美澳洲升级", textColor: .textBlackColor, textFont: 11.ratioHeight)
+    titLB.snp.makeConstraints { (make) in
+      make.top.equalTo(self)
+      make.left.equalTo(13.ratioWidth)
+      make.height.equalTo(35.ratioHeight)
+    }
+    
     addSubview(guessIMV)
+    guessIMV.image = UIImage(named: "home_guess")
     guessIMV.snp.makeConstraints { (make) in
-      make.top.equalTo(5)
+      make.top.equalTo(titLB.snp.bottom).offset(5)
       make.left.equalTo(13.ratioHeight)
       make.right.equalTo(-13.ratioHeight)
       make.bottom.equalTo(-5)
     }
     
-    
+    let lineView = UIView()
+    lineView.backgroundColor =   .separateLine
+    addSubview(lineView)
+    lineView.snp.makeConstraints { (make) in
+      make.bottom.equalTo(self)
+      make.left.equalTo(0)
+      make.right.equalTo(0)
+      make.height.equalTo(0.5)
+    }
+
   }
   
   

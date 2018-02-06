@@ -185,90 +185,90 @@
 //}
 //
 //
-////MARK:头部按钮切换视图
-//protocol ProtocolHeadButtonSwitch {
-//  
-//  //可选属性
-//  var headHeight:CGFloat {get}  //视图按钮高度及背景视图高度
-//  var selectTitleColor:UIColor {get}
-//  var deselectTitleColor:UIColor {get}
-//  var backViewColor:UIColor{get}
-//  var titleFont:CGFloat {get}
-//  
-//  //必须由协议遵循者实现的属性
-//  var firstBT: UIButton! {get set} //第一个按钮
-//  var backView:RoundCornerView! {get set}  //背景视图
-//  func drawInRect(_ rect: CGRect)
-//  
-//}
-//
-//extension ProtocolHeadButtonSwitch where Self: UIView {
-//  
-//  var headHeight:CGFloat { return 28.ratioHeight}
-//  var selectTitleColor:UIColor { return .white }
-//  var deselectTitleColor:UIColor { return .text }
-//  var backViewColor:UIColor { return   .prittyBlue }
-//  var titleFont:CGFloat { return 15 }
-//  
-//  func createView(titleStrArray:[String],sel:Selector) {
-//    
-//    var btnArray:[UIButton] = []
-//    for index in 0 ..< titleStrArray.count {
-//      if index == 0 {
-//        addSubview(firstBT)
-//        firstBT.decorateStyleOfBT(title: titleStrArray[0], textColor: deselectTitleColor, textFont: titleFont, backGroundColor: .clear)
-//        firstBT.addTarget(self, action: sel, for: .touchUpInside)
-//        firstBT.tag = 100
-//        firstBT.setTitleColor(selectTitleColor, for: .selected)
-//        btnArray.append(firstBT)
-//        firstBT.snp.makeConstraints { (make) in
-//          make.top.equalTo(0)
-//          make.left.equalTo(self)
-//          make.height.equalTo(headHeight)
-//        }
-//      }else{
-//        let btn = UIButton(type: .custom)
-//        addSubview(btn)
-//        btn.decorateStyleOfBT(title: titleStrArray[index], textColor: deselectTitleColor, textFont: titleFont, backGroundColor: .clear)
-//        btn.addTarget(self, action: sel, for: .touchUpInside)
-//        btn.tag = 100 + index
-//        btn.setTitleColor(selectTitleColor, for: .selected)
-//        btnArray.append(btn)
-//        btn.snp.makeConstraints({ (make) in
-//          make.top.equalTo(self)
-//          make.height.equalTo(headHeight)
-//          if index == 0 {
-//            make.left.equalTo(self)
-//          }else {
-//            let oldBtn = btnArray[index-1]
-//            make.width.equalTo(oldBtn)
-//            make.left.equalTo(oldBtn.snp.right)
-//            
-//          }
-//          if index == titleStrArray.count - 1 {
-//            make.right.equalTo(self)
-//          }
-//        })
-//      }
-//    }
-//    insertSubview(backView, belowSubview: firstBT)
-//    backView.backgroundColor = backViewColor
-//    backView.snp.makeConstraints { (make) in
-//      make.centerY.equalTo(firstBT)
-//      make.centerX.equalTo(firstBT)
-//      make.width.equalTo(firstBT)
-//      make.height.equalTo(headHeight)
-//    }
-//  }
-//  
-//  func drawInRect(_ rect: CGRect) {
-//    self.layer.cornerRadius = rect.size.height/2
-//    self.layer.masksToBounds = true
-//  }
-//  
-//}
-//
-//
+//MARK:头部按钮切换视图
+protocol ProtocolHeadButtonSwitch {
+  
+  //可选属性
+  var headHeight:CGFloat {get}  //视图按钮高度及背景视图高度
+  var selectTitleColor:UIColor {get}
+  var deselectTitleColor:UIColor {get}
+  var backViewColor:UIColor{get}
+  var titleFont:CGFloat {get}
+  
+  //必须由协议遵循者实现的属性
+  var firstBT: UIButton! {get set} //第一个按钮
+  var backView:RoundCornerView! {get set}  //背景视图
+  func drawInRect(_ rect: CGRect)
+  
+}
+
+extension ProtocolHeadButtonSwitch where Self: UIView {
+  
+  var headHeight:CGFloat { return 28.ratioHeight}
+  var selectTitleColor:UIColor { return .white }
+  var deselectTitleColor:UIColor { return .text }
+  var backViewColor:UIColor { return   .prittyBlue }
+  var titleFont:CGFloat { return 15 }
+  
+  func createView(titleStrArray:[String],sel:Selector) {
+    
+    var btnArray:[UIButton] = []
+    for index in 0 ..< titleStrArray.count {
+      if index == 0 {
+        addSubview(firstBT)
+        firstBT.decorateStyleOfBT(title: titleStrArray[0], textColor: deselectTitleColor, textFont: titleFont, backGroundColor: .clear)
+        firstBT.addTarget(self, action: sel, for: .touchUpInside)
+        firstBT.tag = 100
+        firstBT.setTitleColor(selectTitleColor, for: .selected)
+        btnArray.append(firstBT)
+        firstBT.snp.makeConstraints { (make) in
+          make.top.equalTo(0)
+          make.left.equalTo(self)
+          make.height.equalTo(headHeight)
+        }
+      }else{
+        let btn = UIButton(type: .custom)
+        addSubview(btn)
+        btn.decorateStyleOfBT(title: titleStrArray[index], textColor: deselectTitleColor, textFont: titleFont, backGroundColor: .clear)
+        btn.addTarget(self, action: sel, for: .touchUpInside)
+        btn.tag = 100 + index
+        btn.setTitleColor(selectTitleColor, for: .selected)
+        btnArray.append(btn)
+        btn.snp.makeConstraints({ (make) in
+          make.top.equalTo(self)
+          make.height.equalTo(headHeight)
+          if index == 0 {
+            make.left.equalTo(self)
+          }else {
+            let oldBtn = btnArray[index-1]
+            make.width.equalTo(oldBtn)
+            make.left.equalTo(oldBtn.snp.right)
+            
+          }
+          if index == titleStrArray.count - 1 {
+            make.right.equalTo(self)
+          }
+        })
+      }
+    }
+    insertSubview(backView, belowSubview: firstBT)
+    backView.backgroundColor = backViewColor
+    backView.snp.makeConstraints { (make) in
+      make.centerY.equalTo(firstBT)
+      make.centerX.equalTo(firstBT)
+      make.width.equalTo(firstBT)
+      make.height.equalTo(headHeight)
+    }
+  }
+  
+  func drawInRect(_ rect: CGRect) {
+    self.layer.cornerRadius = rect.size.height/2
+    self.layer.masksToBounds = true
+  }
+  
+}
+
+
 //
 ////左右两个button切换view
 //protocol ProtocolLeftAndRightSwitchView {

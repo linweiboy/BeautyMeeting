@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController,VcDefaultConfigProtocol {
+class HomeVC: UIViewController,VcDefaultConfigProtocol{
   
   fileprivate let mainTableView = UITableView(frame: .zero, style: .grouped)
   fileprivate let navTitleView = NavTitleView()
@@ -30,6 +30,21 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol {
   
   //四个品牌点击
   func popularizeClick(_ tag:Int) {
+    switch tag {
+    case 10:
+      let vc = IntroductionVC()
+      pushTo(vc)
+    case 11:
+      break
+    case 12:
+      break
+    case 13:
+      let vc = UnionVC()
+      pushTo(vc)
+    default:break
+    }
+
+    
   }
 
   
@@ -45,7 +60,15 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol {
   
   //更多点击事件
   func moreClick(_ section: Int) {
-    
+    switch section {
+    case 0:
+      let vc = DailyReadVC()
+      pushTo(vc)
+    case 1:
+      let vc = ActivityListVC()
+      pushTo(vc)
+    default:break
+    }
   }
 }
 
@@ -73,6 +96,8 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       return 270
     case 1:
       return 220
+    case 2:
+      return 200
     default:break
     }
     return 45
@@ -84,6 +109,9 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       return cell
     }else if indexPath.section == 1{
       let cell = tableView.dequeueReusableCell(withIdentifier: HomeActiveCell.reuseIdentifier) as! HomeActiveCell
+      return cell
+    }else if indexPath.section == 2{
+      let cell = tableView.dequeueReusableCell(withIdentifier: HomeGuessCell.reuseIdentifier) as! HomeGuessCell
       return cell
     }
     return UITableViewCell()
@@ -129,7 +157,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       return TwoHeaderView
     case 2:
       let ThreeHeaderView = CustomTabHeaderView()
-      ThreeHeaderView.showTitleDateStr("猜你喜欢", moreLBIsHidden: true)
+      ThreeHeaderView.showTitleDateStr("节目预告", moreLBIsHidden: true)
       return ThreeHeaderView
     default:return UIView()
     }
