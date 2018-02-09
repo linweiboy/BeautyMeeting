@@ -35,31 +35,31 @@ struct PlatformKey {
   static let AppSecret = "f4b9ebc5-dcae-4214-9e45-216327d2b8ca"
   
   //国槐(财富)分配给app厂商的
-  static var Channel_Oid:String  {
-    let currentU =  GuoHuaiURL.server.currentUrl
-    switch currentU {
-    case GuoHuaiURL.server.formal: return "8a7df1b15cfcfa6f015cfd6d8d52054b" //正式
-    case GuoHuaiURL.server.pre: return "8a9c20625e0e58d6015e5521b7902ecc" //预发布
-    case GuoHuaiURL.server.test: return "8a9c20625e78c6fa015e949d896001ba" //测试
-    default:return "8a9e68ed5c1ff561015c207dc8a407bf" //其它
-    }
-  }
-  static var Cid:String {
-    let currentU =  GuoHuaiURL.server.currentUrl
-    switch currentU {
-    case GuoHuaiURL.server.formal: return "xzgjf" //正式
-    case GuoHuaiURL.server.pre: return "12308" //预发布
-    default:return "12306" //测试
-    }
-  }
-  static var Ckey:String  {
-    let currentU =  GuoHuaiURL.server.currentUrl
-    switch currentU {
-    case GuoHuaiURL.server.formal: return "xzgjf" //正式
-    case GuoHuaiURL.server.pre: return "12308" //预发布
-    default:return "12306" //测试
-    }
-  }
+//  static var Channel_Oid:String  {
+//    let currentU =  GuoHuaiURL.server.currentUrl
+//    switch currentU {
+//    case GuoHuaiURL.server.formal: return "8a7df1b15cfcfa6f015cfd6d8d52054b" //正式
+//    case GuoHuaiURL.server.pre: return "8a9c20625e0e58d6015e5521b7902ecc" //预发布
+//    case GuoHuaiURL.server.test: return "8a9c20625e78c6fa015e949d896001ba" //测试
+//    default:return "8a9e68ed5c1ff561015c207dc8a407bf" //其它
+//    }
+//  }
+//  static var Cid:String {
+//    let currentU =  GuoHuaiURL.server.currentUrl
+//    switch currentU {
+//    case GuoHuaiURL.server.formal: return "xzgjf" //正式
+//    case GuoHuaiURL.server.pre: return "12308" //预发布
+//    default:return "12306" //测试
+//    }
+//  }
+//  static var Ckey:String  {
+//    let currentU =  GuoHuaiURL.server.currentUrl
+//    switch currentU {
+//    case GuoHuaiURL.server.formal: return "xzgjf" //正式
+//    case GuoHuaiURL.server.pre: return "12308" //预发布
+//    default:return "12306" //测试
+//    } 
+//  }
   
   //智齿客服app key
   static let ZhiChiKeFuAppKey = "2362fd5551d340bbb08cff1b995e80d8"

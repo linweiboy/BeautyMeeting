@@ -10,8 +10,8 @@
 //MARK: -小诸葛独立Path
 extension XZGURL {
   
-  //首页推荐的产品
-  static let homeProduct = "wd_api/subject/getHomeSubjectOn"
+  //首页banner
+  static let homeProduct = "wd_api/banner/getBannerOn"
   //判断今日是否签到
   static let homeTodaySign = "wd_api/mallIntegral/isSignToday"
   //签到
@@ -257,118 +257,6 @@ extension XZGURL {
   
 }
 
-
-//MARK: - 国槐独立path
-extension GuoHuaiURL {
-  
-  //财富
-  //"/mimosa/product/client/t0products4XZG"  //活期产品列表
-  static let currentProductList = "mimosa/product/client/t0products4XZG"//"mimosa/product/client/t0products"
-  //活期产品详情
-  static let currentProductDetail = "mimosa/product/client/cdetail"
-  
-  //定期产品列表
-  static let regularProductList = "mimosa/product/client/tnproducts"
-  //定期产品详情
-  static let regularProductDetail = "mimosa/product/client/pdetail"
-  
-  //投资记录
-  static let investRecord = "mimosa/boot/tradeorder/mng"
-   // 认购获取优惠券
-  static let proCoupon = "mimosa/client/tulip/mycouponofpro"
-  //生成订单
-  static let tradeOrder = "mimosa/client/tradeorder/invest"
-   //检测申购订单是否完成
-  static let orderIsDone = "mimosa/client/tradeorder/isdone"
-  
-  
-  //我的
-  //发送验证码
-  static let sendvc = "mimosa/client/sms/sendvc"
-  //检查手机验证码
-  static let checkvc = "mimosa/client/sms/checkvc"
-  //登录
-  static let login = "mimosa/client/investor/baseaccount/login"
-  //获取全部银行信息
-  static let bankfindall = "cms/client/bankCard/findall"
-  //获取银行信息
-  static let bankfindOne = "cms/client/bankCard/find"
-  
-  //我的活期产品列表
-  static let myCurrentList = "mimosa/client/holdconfirm/t0hold"
-  //我的活期产品详情
-  static let myCurrentDetail = "mimosa/client/holdconfirm/mycurrdetail"
-  //我的定期产品列表
-  static let myRegularList = "mimosa/client/holdconfirm/tnhold"
-  //我的定期持有中产品详情
-  static let myRegularHoldingDetail = "mimosa/client/holdconfirm/tningdetailer"
-  //我的定期已结清产品详情
-  static let myRegularAlreadyBalanceDetail = "mimosa/client/holdconfirm/closedregularinfo"
-  //用户相关信息
-  static let accountInfo = "mimosa/client/investor/baseaccount/accountinfo"
-  //我的账户详情
-  static let myHome = "mimosa/client/investor/baseaccount/myhome"
-  //我的资产详情
-  static let myCaptial = "mimosa/client/investor/baseaccount/mycaptial"
-  //绑卡用户验证
-  static let bindBankCardApply = "mimosa/client/investor/bank/bindcardapply"
-  //绑卡
-  static let bindBankCard = "mimosa/client/investor/bank/add"
-  //获取协议 （快捷支付服务协议）
-  static let getProtocolInfo = "cms/app/getProtocolInfo"
-  
-  //用户资金相关
-  static let userInfo = "mimosa/client/investor/baseaccount/userinfo"
-  //充值
-  static let deposit = "mimosa/client/investor/bankorder/deposit"
-  //检查充值订单是否完成
-  static let depositCheck = "mimosa/client/investor/bankorder/isdone"
-  //充提记录
-  static let capitalDetailed = "mimosa/client/investor/bankorder/mng"
-  //充值发送验证码
-  static let depositDapply = "mimosa/client/investor/bankorder/apply/dapply"
-  //验证交易密码
-  static let checkpaypwd = "mimosa/client/investor/baseaccount/checkpaypwd"
-  //提现
-  static let withDraw = "mimosa/client/investor/bankorder/withdraw"
-  //提现获取手续费
-  static let drawCashFee = "mimosa/client/switch/find"
-  //赎回
-  static let myCurrentRedeem = "mimosa/client/tradeorder/redeem"
-  //活期定期详情->交易明细
-  static let detailTradeorder = "mimosa/client/tradeorder/mng"
-  static let detailIncome = "mimosa/client/investor/holdincome/qryincome2"
-  //卡券中心
-  static let myCardCoupons = "mimosa/client/tulip/myallcoupon"
-  //获取红包金额到资产
-  static let achieveCoupons = "mimosa/boot/investor/baseaccount/receiveredenvelope"
-  
-  //绑卡时检查选择银行和银行账号是否匹配
-  static let findBankInfoByCard = "/settlement/channelBank/findBankInfoByCard"
-  
-  //------------- H5地址
-  
-  //投资协议地址
-//  static let H5_InvestProtocolUrl = "html/index/index-linkpage.html"
-  static let H5_InvestProtocolUrl = "html/index/index-linkpage.html"
-  
-}
-
-
-
-//MARK: - 商城path
-extension MallURL {
-  
-  //获取积分记录列表
-  static let getIntegralRecord = "wd_api/mallIntegral/mallIntegralRecord"
-  //做任务赚积分(链接小诸葛服务)
-  static let doTask = "wd_api/mallIntegral/doTaskToEarnIntegral"
-  
-  /****H5链接****/
-  static let drawPrize = "Mobile/Goods/choujiang.html"
-  static let integralRule = "mobile/Index/h5.html"
-  
-}
 
 
 

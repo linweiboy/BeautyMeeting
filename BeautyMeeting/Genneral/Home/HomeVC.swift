@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController,VcDefaultConfigProtocol{
+class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
   
   fileprivate let mainTableView = UITableView(frame: .zero, style: .grouped)
   fileprivate let navTitleView = NavTitleView()
@@ -20,12 +20,25 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol{
         super.viewDidLoad()
       defaultConfig()
       createView()
+      refreshData()
     }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     firstHeaderView.showBannerDate(["","","",""])
     firstHeaderView.showNoticeDate(["第一天","第二天","第三天","第四天"])
+  }
+  
+  func refreshData() {
+    HomeRequest.homeProduct { [weak self](result) in
+      guard let strongSelf = self else{return}
+      switch result {
+      case .success(let json):
+        printLog(message: json)
+      case .failure(let errpr):
+        strongSelf.showMessage(errpr.reason)
+      }
+    }
   }
   
   //四个品牌点击
