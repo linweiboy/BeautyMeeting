@@ -170,7 +170,8 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       return TwoHeaderView
     case 2:
       let ThreeHeaderView = CustomTabHeaderView()
-      ThreeHeaderView.showTitleDateStr("节目预告", moreLBIsHidden: true)
+      ThreeHeaderView.showTitleDateStr("节目预告", moreLBIsHidden: false)
+      ThreeHeaderView.moreClickClosure = {[unowned self] in self.moreClick(section)}
       return ThreeHeaderView
     default:return UIView()
     }
