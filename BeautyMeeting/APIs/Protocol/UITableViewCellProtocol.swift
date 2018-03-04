@@ -63,78 +63,78 @@ import Foundation
 //  }
 //}
 //
-//// 左边缘|-(15+10)-图片-标题
-//protocol ProtocolCustomCellDirectStyle {
-//  var iconIV:UIImageView! {get set}
-//  var titleLB:UILabel! {get set}
-//}
-//
-//extension ProtocolCustomCellDirectStyle where Self:UITableViewCell {
-//  
-//  func addShowViews(imageName:String,title:String,
-//                    textColor:UIColor,textFont:CGFloat,isSelect:Bool = false) {
-//    
-//    addSubview(iconIV)
-//    iconIV.snp.makeConstraints { (make) in
-//      let leftOffset = CGDefine.width.cellLeftImageCenterXOffset
-//      make.centerX.equalTo(self.snp.left).offset(leftOffset)
-//      make.centerY.equalTo(self)
-//      make.width.height.equalTo(15)
-//    }
-//    
-//    let imageC = UIImage(named: imageName)
-//    if let image = imageC {
-//      iconIV.image = image
-//      iconIV.snp.updateConstraints({ (make) in
-//        make.width.equalTo(image.ratioWidth)
-//        make.height.equalTo(image.ratioHeight)
-//      })
-//    }
-//    addSubview(titleLB)
-//    titleLB.decorateStyleOfLB(title:title, textColor: textColor, textFont: textFont)
-//    titleLB.snp.makeConstraints { (make) in
-//      make.left.equalTo(iconIV.snp.centerX).offset(20)
-//      make.centerY.equalTo(self)
-//    }
-//    
-//    if isSelect {
-//      self.selectionStyle = .default
-//      self.accessoryType = .disclosureIndicator
-//    }else {
-//      self.selectionStyle = .none
-//      self.accessoryType = .none
-//    }
-//  }
-//}
-//
-//
-//// 标题和内容 cell
-//protocol TitleAndRightContentCellProtocol {
-//  var titleLB:UILabel! {get set}
-//  var contentLB:UILabel! {get set}
-//}
-//
-//extension TitleAndRightContentCellProtocol where Self: UITableViewCell  {
-//  
-//  func addShowViews() {
-//    addSubview(titleLB)
-//    titleLB.decorateStyleOfLB(title: "", textColor:  .text, textFont: 12.ratioHeight)
-//    titleLB.snp.makeConstraints { (make) in
-//      make.left.equalTo(15)
-//      make.centerY.equalTo(self)
-//    }
-//    
-//    addSubview(contentLB)
-//    contentLB.decorateStyleOfLB(title: "", textColor:  .text, textFont: 12.ratioHeight, textAlignment: .right)
-//    contentLB.snp.makeConstraints { (make) in
-//      make.right.equalTo(CGDefine.width.cellRightLabelRightOffset)
-//      make.centerY.equalTo(self)
-//    }
-//  }
-//  
-//}
-//
-//
+// 左边缘|-(15+10)-图片-标题
+protocol ProtocolCustomCellDirectStyle {
+  var iconIV:UIImageView! {get set}
+  var titleLB:UILabel! {get set}
+}
+
+extension ProtocolCustomCellDirectStyle where Self:UITableViewCell {
+  
+  func addShowViews(imageName:String,title:String,
+                    textColor:UIColor,textFont:CGFloat,isSelect:Bool = false) {
+    
+    addSubview(iconIV)
+    iconIV.snp.makeConstraints { (make) in
+      let leftOffset = CGDefine.width.cellLeftImageCenterXOffset
+      make.centerX.equalTo(self.snp.left).offset(leftOffset)
+      make.centerY.equalTo(self)
+      make.width.height.equalTo(15)
+    }
+    
+    let imageC = UIImage(named: imageName)
+    if let image = imageC {
+      iconIV.image = image
+      iconIV.snp.updateConstraints({ (make) in
+        make.width.equalTo(image.ratioWidth)
+        make.height.equalTo(image.ratioHeight)
+      })
+    }
+    addSubview(titleLB)
+    titleLB.decorateStyleOfLB(title:title, textColor: textColor, textFont: textFont)
+    titleLB.snp.makeConstraints { (make) in
+      make.left.equalTo(iconIV.snp.centerX).offset(20)
+      make.centerY.equalTo(self)
+    }
+    
+    if isSelect {
+      self.selectionStyle = .default
+      self.accessoryType = .disclosureIndicator
+    }else {
+      self.selectionStyle = .none
+      self.accessoryType = .none
+    }
+  }
+}
+
+
+// 标题和内容 cell
+protocol TitleAndRightContentCellProtocol {
+  var titleLB:UILabel! {get set}
+  var contentLB:UILabel! {get set}
+}
+
+extension TitleAndRightContentCellProtocol where Self: UITableViewCell  {
+  
+  func addShowViews() {
+    addSubview(titleLB)
+    titleLB.decorateStyleOfLB(title: "", textColor:  .text, textFont: 12.ratioHeight)
+    titleLB.snp.makeConstraints { (make) in
+      make.left.equalTo(15)
+      make.centerY.equalTo(self)
+    }
+    
+    addSubview(contentLB)
+    contentLB.decorateStyleOfLB(title: "", textColor:  .text, textFont: 12.ratioHeight, textAlignment: .right)
+    contentLB.snp.makeConstraints { (make) in
+      make.right.equalTo(CGDefine.width.cellRightLabelRightOffset)
+      make.centerY.equalTo(self)
+    }
+  }
+  
+}
+
+
 //
 //protocol ProductCellStyle {
 //  

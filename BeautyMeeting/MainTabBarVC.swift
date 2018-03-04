@@ -8,7 +8,7 @@
 
 import IQKeyboardManagerSwift
 
-class MainTabBarVC: UITabBarController,UITabBarControllerDelegate {
+class MainTabBarVC: UITabBarController,UITabBarControllerDelegate,LoginExpiredProtocol,LoadingPresenterProtocol {
   
   fileprivate let homeVC = HomeVC()
   fileprivate let chatVC = ChatVC()
@@ -43,6 +43,18 @@ class MainTabBarVC: UITabBarController,UITabBarControllerDelegate {
     addChildViewController(nav)
   }
   
+  func presentRegisterVC() {
+    let registerVC = RegisterVC()
+    registerVC.entryRegisterVCType = .present
+    let nav = UINavigationController(rootViewController: registerVC)
+    present(nav, animated: true, completion: nil)
+  }
+  
+  func presentLoginVC() {
+    let login = LoginVC()
+    let nav = UINavigationController(rootViewController: login)
+    present(nav, animated: true, completion: nil)
+  }
 
 }
 

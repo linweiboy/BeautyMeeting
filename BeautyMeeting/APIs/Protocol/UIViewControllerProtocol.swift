@@ -24,22 +24,22 @@ extension VcDefaultConfigProtocol where Self:UIViewController {
 }
 
 
-////MARK: 登录过期 弹出登录视图
-//protocol LoginExpiredProtocol {
-//  func loginSucceed(_ action:(()->())?)
-//}
+//MARK: 登录过期 弹出登录视图
+protocol LoginExpiredProtocol {
+  func loginSucceed(_ action:(()->())?)
+}
 
-//extension LoginExpiredProtocol where Self:UIViewController {
-//  func loginSucceed(_ action:(()->())?)  {
-//    let login = LoginVC()
-//    if action != nil {
-//      login.loginSucceedClosure = { action!() }
-//    }
-//    let nav = UINavigationController(rootViewController: login)
-//    present(nav, animated: true, completion: nil)
-//  }
-//
-//}
+extension LoginExpiredProtocol where Self:UIViewController {
+  func loginSucceed(_ action:(()->())?)  {
+    let login = LoginVC()
+    if action != nil {
+      login.loginSucceedClosure = { action!() }
+    }
+    let nav = UINavigationController(rootViewController: login)
+    present(nav, animated: true, completion: nil)
+  }
+
+}
 //
 //
 ////MARK:- 加载更多数据和 下拉刷新数据

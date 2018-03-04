@@ -31,7 +31,7 @@ extension UIColor {
   static let orangeColor  = UIColor(hexStr: "FF7F00")
   static let garyTitleColor = UIColor(hexStr: "A5A5A5") //浅灰色字体
   static let bankColor = UIColor(hexStr: "0066B3") //完善银行卡
-  
+  static let userBackLB = UIColor(hexStr: "E05320")
   //富有感情的色值
   static var textBlackColor:UIColor { //黑色文字颜色
     return c3D3D3D

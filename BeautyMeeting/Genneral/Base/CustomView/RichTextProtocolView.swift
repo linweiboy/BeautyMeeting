@@ -57,6 +57,22 @@ class RichTextProtocolView: UITextView {
     attributedText = att1
   }
   
+  /// 自定义文字 《xx》、《xx》、《xx》
+  func setAttributedTextTwoStyle(tipText:String) {
+    let att1 = NSMutableAttributedString(string:tipText, attributes: [NSAttributedStringKey.foregroundColor :UIColor.tipText,NSAttributedStringKey.font:UIFont.systemFont(ofSize: 12.ratioHeight)])
+    for name in fileNameArray {
+      let att = NSMutableAttributedString(string: "《\(name)》", attributes: [NSAttributedStringKey.foregroundColor :  UIColor.prittyBlue,NSAttributedStringKey.font:UIFont.systemFont(ofSize: 12.ratioHeight)])
+      let addAtt = NSMutableAttributedString(string: "、", attributes: [NSAttributedStringKey.foregroundColor:UIColor.textBlackColor,
+                                                                         
+                                                                         NSAttributedStringKey.font:UIFont.systemFont(ofSize: 12.ratioHeight)])
+      att1.append(att)
+      att1.append(addAtt)
+    }
+    att1.deleteCharacters(in: NSRange(location: att1.length - 1, length: 1))
+    attributedText = att1
+  }
+
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
