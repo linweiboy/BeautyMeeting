@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoVC: UIViewController, VcDefaultConfigProtocol {
+class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtocol {
 
   
   fileprivate var playCollectionView:UICollectionView!
@@ -18,9 +18,21 @@ class VideoVC: UIViewController, VcDefaultConfigProtocol {
         super.viewDidLoad()
       defaultConfig()
       createView()
-      
+      refreshData()
     }
 
+  func refreshData() {
+    VideoRequest.videoList { [weak self](result) in
+      guard let strongSelf = self else{return}
+      switch result {
+      case .success(let json):
+        printLog(message: json)
+      case .failure(let error):
+        strongSelf.showMessage(error.reason)
+      }
+    }
+  }
+  
   
   func moreClick(_ section:Int){
     printLog(message: section)

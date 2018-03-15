@@ -42,69 +42,69 @@ extension LoginExpiredProtocol where Self:UIViewController {
 }
 //
 //
-////MARK:- 加载更多数据和 下拉刷新数据
-//protocol LoadMoreDataProtocol:class {
-//  associatedtype T:ProtocolParseModelList
-//  var mainTableView:UITableView! {get set}
-//  var dataList:[T.type]! {get set} //放置数据的数组
-//  var currentOffset:Int! {get set} //默认要赋值为0
-//
-//  //刷新数据要调用这个方法 action是refreshPrepare执行完之后 再执行的动作
-//  func refreshPrepare()
-//  func handleData(_ json:JSON)
-//  func handleDataList(_ json:JSON)
-//  func showNoDataView()
-//}
-//
-//extension LoadMoreDataProtocol where Self:UIViewController {
-//
-//  //json["data"]
-//  func handleData(_ json:JSON) {
-//    let resultModelArray = T.parseListForData(json)
-//    commonHandle(originJson: json, arr: resultModelArray)
-//  }
-//
-//  //json["data"]["list"]
-//  func handleDataList(_ json:JSON) {
-//    let resultModelArray = T.parseListForDataList(json)
-//    commonHandle(originJson: json, arr: resultModelArray)
-//  }
-//
-//  func commonHandle(originJson:JSON,arr:[T.type]) {
-//    let common = CommonModel(json: originJson)
-//    let totalCount = common.totalCount
-//    if mainTableView.mj_header.isRefreshing {
-//      dataList.removeAll()
-//    }
-//    if !arr.isEmpty {
-//      dataList.append(contentsOf: arr)
-//    }
-//    let footIsHi = currentOffset!+DataOfPageNum < totalCount
-//    mainTableView.mj_footer.isHidden = !footIsHi
-//    mainTableView.reloadData()
-//    showNoDataView()
-//  }
-//
-//  //默认没有可点击button  如需定制 只需要在遵守协议的类里重写这个方法即可
-//  func showNoDataView() {
-//    if dataList.count == 0 {
-//      mainTableView.addNoDataView(title: "暂无数据！", btTitle: nil, btClick: nil)
-//    }else {
-//      mainTableView.removeNoDataView()
-//    }
-//  }
-//
-//  func refreshPrepare() {
-//    if mainTableView.mj_header.isRefreshing {
-//      currentOffset = 0
-//    }
-//    if mainTableView.mj_footer.isRefreshing {
-//      currentOffset = currentOffset+DataOfPageNum
-//    }
-//  }
-//
-//}
-//
+//MARK:- 加载更多数据和 下拉刷新数据
+protocol LoadMoreDataProtocol:class {
+  associatedtype T:ProtocolParseModelList
+  var mainTableView:UITableView! {get set}
+  var dataList:[T.type]! {get set} //放置数据的数组
+  var currentOffset:Int! {get set} //默认要赋值为0
+
+  //刷新数据要调用这个方法 action是refreshPrepare执行完之后 再执行的动作
+  func refreshPrepare()
+  func handleData(_ json:JSON)
+  func handleDataList(_ json:JSON)
+  func showNoDataView()
+}
+
+extension LoadMoreDataProtocol where Self:UIViewController {
+
+  //json["data"]
+  func handleData(_ json:JSON) {
+    let resultModelArray = T.parseListForData(json)
+    commonHandle(originJson: json, arr: resultModelArray)
+  }
+
+  //json["data"]["list"]
+  func handleDataList(_ json:JSON) {
+    let resultModelArray = T.parseListForDataList(json)
+    commonHandle(originJson: json, arr: resultModelArray)
+  }
+
+  func commonHandle(originJson:JSON,arr:[T.type]) {
+    let common = CommonModel(json: originJson)
+    let totalCount = common.totalCount
+    if mainTableView.mj_header.isRefreshing {
+      dataList.removeAll()
+    }
+    if !arr.isEmpty {
+      dataList.append(contentsOf: arr)
+    }
+    let footIsHi = currentOffset!+DataOfPageNum < totalCount
+    mainTableView.mj_footer.isHidden = !footIsHi
+    mainTableView.reloadData()
+    showNoDataView()
+  }
+
+  //默认没有可点击button  如需定制 只需要在遵守协议的类里重写这个方法即可
+  func showNoDataView() {
+    if dataList.count == 0 {
+      mainTableView.addNoDataView(title: "暂无数据！", btTitle: nil, btClick: nil)
+    }else {
+      mainTableView.removeNoDataView()
+    }
+  }
+
+  func refreshPrepare() {
+    if mainTableView.mj_header.isRefreshing {
+      currentOffset = 0
+    }
+    if mainTableView.mj_footer.isRefreshing {
+      currentOffset = currentOffset+DataOfPageNum
+    }
+  }
+
+}
+
 ////MARK:- 加载更多数据和 下拉刷新数据
 //protocol GuoHuaiLoadMoreDataProtocol:class {
 //

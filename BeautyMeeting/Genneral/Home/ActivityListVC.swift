@@ -15,17 +15,17 @@ enum ActivityType:String {
   case end = "end" //已结束
 }
 
-class ActivityListVC: UIViewController, VcDefaultConfigProtocol, PopVCSetProtocol, LoadingPresenterProtocol, SwipeGestureRecognizerProtocol {
+class ActivityListVC: UIViewController, VcDefaultConfigProtocol, PopVCSetProtocol, LoadingPresenterProtocol, SwipeGestureRecognizerProtocol,LoadMoreDataProtocol {
   
   fileprivate var activityType:ActivityType = .pre
   fileprivate var currentPage:Int = 1
   fileprivate let headerView = ActivityHeaderView()
   
   //LoadMoreDataProtocol
-//  internal typealias T = DiscoverListModel
+  internal typealias T = DiscoverListModel
   internal var mainTableView:UITableView! = UITableView()
-//  internal var dataList:[DiscoverListModel]! =  []
-//  internal var currentOffset:Int! = 0
+  internal var dataList:[DiscoverListModel]! =  []
+  internal var currentOffset:Int! = 0
   
   //SwipeGestureRecognizerProtocol
   var swipeSelector: Selector!
@@ -50,25 +50,26 @@ class ActivityListVC: UIViewController, VcDefaultConfigProtocol, PopVCSetProtoco
     case 102:activityType = .end
     default:break
     }
-//    currentPage = 1
-//    currentOffset = 0
-//    dataList.removeAll()
-//    mainTableView.mj_header.beginRefreshing()
+    currentPage = 1
+    currentOffset = 0
+    dataList.removeAll()
+    mainTableView.mj_header.beginRefreshing()
   }
   
-//  @objc func refreshData() {
-//    refreshPrepare()
-//    DiscoverRequest.discoverList(status: activityType, currentPage: currentPage, pageSize: DataOfPageNum) { [weak self] (result) in
-//      guard let strongeSelf = self else { return }
-//      strongeSelf.mainTableView.finishRefreshing()
-//      switch result {
-//      case .success(let json):
-//        strongeSelf.handleData(json)
-//      case .failure(let error):
-//        strongeSelf.showMessage(error.reason)
-//      }
-//    }
-//  }
+  @objc func refreshData() {
+    refreshPrepare()
+    HomeRequest.homeMoreList(status: activityType, currentPage: currentPage, pageSize: DataOfPageNum) { [weak self] (result) in
+      guard let strongeSelf = self else { return }
+      strongeSelf.mainTableView.finishRefreshing()
+      switch result {
+      case .success(let json):
+        printLog(message: json)
+        strongeSelf.handleData(json)
+      case .failure(let error):
+        strongeSelf.showMessage(error.reason)
+      }
+    }
+  }
 
   
 }
@@ -142,9 +143,9 @@ extension ActivityListVC {
     mainTableView.showsHorizontalScrollIndicator = false
     mainTableView.showsVerticalScrollIndicator = false
     mainTableView.backgroundColor =  .backGround
-//    mainTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
-//    mainTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(refreshData))
-//    mainTableView.mj_footer.isHidden = true
+    mainTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
+    mainTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(refreshData))
+    mainTableView.mj_footer.isHidden = true
     view.addSubview(mainTableView)
     mainTableView.snp.makeConstraints { (make) in
       make.left.right.bottom.equalTo(view)

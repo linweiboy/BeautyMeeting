@@ -11,7 +11,7 @@ import UIKit
 
 class ApplyView: UIView {
   
-  convenience init(nameTF:UITextField,idCardTF:UITextField,sixTF:UITextField,phoneTF:UITextField,applyCityTF:UITextField,addressTF:UITextField) {
+  convenience init(nameTF:UITextField,idCardTF:UITextField,sixTF:UITextField,applyCityTF:UITextField,addressTF:UITextField) {
     self.init(frame: CGRect.zero)
     self.backgroundColor = .white
     
@@ -41,20 +41,11 @@ class ApplyView: UIView {
       make.height.equalTo(40.ratioHeight)
     }
     
-    let phoneView = ApplyTextFiledView(titleStr: "手机号码", textTF: phoneTF)
-    phoneTF.decorateStyleOfTF(placeholderTitle: "请输入手机号码", placeholderColor: UIColor.gray, keyboardType: .numberPad, borderStyle: .none, secureTextEntry: false, textColor: .black, textFont: 13.ratioHeight)
-    addSubview(phoneView)
-    phoneView.snp.makeConstraints { (make) in
-      make.top.equalTo(sixView.snp.bottom)
-      make.left.right.equalTo(self)
-      make.height.equalTo(40.ratioHeight)
-    }
-    
     let cityView = ApplyTextFiledView(titleStr: "申请城市", textTF: applyCityTF)
     applyCityTF.decorateStyleOfTF(placeholderTitle: "请输入申请城市", placeholderColor: UIColor.gray, keyboardType: .default, borderStyle: .none, secureTextEntry: false, textColor: .black, textFont: 13.ratioHeight)
     addSubview(cityView)
     cityView.snp.makeConstraints { (make) in
-      make.top.equalTo(phoneView.snp.bottom)
+      make.top.equalTo(sixView.snp.bottom)
       make.left.right.equalTo(self)
       make.height.equalTo(40.ratioHeight)
     }

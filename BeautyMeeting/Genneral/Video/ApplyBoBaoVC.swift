@@ -36,7 +36,7 @@ extension ApplyBoBaoVC {
   
   func createView() {
     
-    let mainView = ApplyView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, phoneTF: phoneTF, applyCityTF: applyCityTF, addressTF: addressTF)
+    let mainView = ApplyView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, applyCityTF: applyCityTF, addressTF: addressTF)
     self.view.addSubview(mainView)
     mainView.snp.makeConstraints { (make) in
       make.top.left.right.equalTo(self.view)

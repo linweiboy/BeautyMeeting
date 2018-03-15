@@ -15,6 +15,7 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
   fileprivate var popularizeView = PopularizeView()
   fileprivate var firstHeaderView = HomeTabFirstHeaderView()
   fileprivate let titles = ["美会介绍","美会播报","美会商院","美会联盟"]
+  fileprivate var bannarModelArray: [BannarModel] = []
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +26,46 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    firstHeaderView.showBannerDate(["","","",""])
     firstHeaderView.showNoticeDate(["第一天","第二天","第三天","第四天"])
   }
   
   func refreshData() {
-    HomeRequest.homeProduct { [weak self](result) in
+    //获取首页的推荐的产品
+    HomeRequest.homeProductRecommendation { [weak self] (result) in
+      guard let strongSelf = self else{return}
+//      strongSelf.mainTableView.mj_header.endRefreshing()
+      switch result {
+      case .success(let json):
+        printLog(message: "首页数据\(json)")
+      case .failure(let error):
+        strongSelf.showMessage(error.reason)
+      }
+    }
+    
+    //
+    HomeRequest.homeNotice { [weak self](result) in
       guard let strongSelf = self else{return}
       switch result {
       case .success(let json):
-        printLog(message: json)
+        printLog(message: "消息公告\(json)")
+      case .failure(let errpr):
+        strongSelf.showMessage(errpr.reason)
+      }
+    }
+    
+    
+    HomeRequest.homeBanner { [weak self](result) in
+      guard let strongSelf = self else{return}
+      switch result {
+      case .success(let json):
+//        printLog(message: json)
+        let modelArray = BannarModel.parseListForData(json)
+        if modelArray.count != 0 {
+          strongSelf.bannarModelArray.removeAll()
+          strongSelf.bannarModelArray.append(contentsOf: modelArray)
+          let urlArray = modelArray.map { $0.imgUrl }
+          strongSelf.firstHeaderView.showBannerDate(urlArray)
+        }
       case .failure(let errpr):
         strongSelf.showMessage(errpr.reason)
       }

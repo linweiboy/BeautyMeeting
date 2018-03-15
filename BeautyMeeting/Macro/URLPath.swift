@@ -11,15 +11,25 @@
 extension XZGURL {
   
   //首页banner
-  static let homeProduct = "wd_api/banner/getBannerOn"
+  static let homeBanner = "wd_api/banner/getBannerOn"
+  //首页最新活动更多列表
+  static let homeMoreList = "wd_api/banner/getActivityListOn"
+  //首页获取新闻列表
+  static let newsCode = "wd_api/article/getSubCodesOn"
+  //首页推荐标列表
+  static let homeList = "wd_api/article/getIndexArticleOn"
+  //首页获取消息
+  static let noticeCode = "wd_api/article/getArticleListOn"
+  
+  
+  
   //判断今日是否签到
   static let homeTodaySign = "wd_api/mallIntegral/isSignToday"
   //签到
   static let homeSign = "wd_api/mallIntegral/sign"
   //首页应用列表
   static let newHomePortal = "wd_api/appIndexPortal/getPortalsOn"
-  //首页推荐标列表
-  static let homeList = "wd_api/recommend/getRecommendProductOn"
+
   
   
   //产品列表
@@ -63,6 +73,15 @@ extension XZGURL {
   static let badPropertyUploadMsg = "wd_api/badLoan/saveOn"
   
   
+  ///视频
+  //视频首页列表
+  static let videoHome = "wd_api/article/getVideoArticleOn"
+  
+  
+  
+  
+  
+  
   //发现
   //文章详情
   static let moreArticleDetail = "wd_api/article/getArticleDetailOn"
@@ -87,7 +106,7 @@ extension XZGURL {
   //注册 检查手机号码是否已经注册
   static let register_CheckMobile = "wd_api/userCenter/checkMobileOn"
   //登录
-  static let login = "wd_api/userCenter/loginOn"
+  static let login = "uc/api/userCenter/loginOn"
   //发送验证码(找回登录密码)
   static let sendVerify_ResetLoginPassword = "wd_api/userCenter/sendRetrievePwdCodeOn"
   //找回登录密码

@@ -9,9 +9,28 @@
 class HomeRequest:ProtocolRequestUnifyHandle {
   
   ///获取bannar code=业务类型(哪个界面的)
-  class func homeProduct(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: [:], urlStr: XZGURL.homeProduct, handle: completionHandler)
+  class func homeBanner(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
+    unifyPostRequest(parameter: [:], urlStr: XZGURL.homeBanner, handle: completionHandler)
   }
+  
+  ///最新活动页面活动列表 参数：（status: pre 未开始 pro 进行中 end 已结束）、currentPage 当前页   pageSize每页条数
+  class func homeMoreList(status:ActivityType,currentPage:Int,pageSize:Int,completionHandler:@escaping (RequestResult<JSON>) -> ()) {
+    let param = ["status":status.rawValue,"pageSize":pageSize.stringValue,"currentPage":currentPage.stringValue]
+    unifyPostRequest(parameter: param, urlStr: XZGURL.homeMoreList, handle: completionHandler)
+  }
+  ///首页产品推荐、最新活动
+  class func homeProductRecommendation(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
+    BaseRequest.shared.postRequest(url: XZGURL.homeList, parameters:[:], completionHandler: completionHandler)
+  }
+
+  
+  ///获取消息公告 typeCode=业务类型(哪个界面的 notice)
+  class func homeNotice(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
+    unifyPostRequest(parameter: ["typeCode":"notice"], urlStr: XZGURL.noticeCode, handle: completionHandler)
+  }
+  
+  
+  
   
   ///今日是否签到
   class func homeWhetherIsSign(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
@@ -23,11 +42,6 @@ class HomeRequest:ProtocolRequestUnifyHandle {
     unifyPostRequest(parameter: [:], urlStr: XZGURL.homeSign, handle: completionHandler)
   }
   
-  ///首页产品推荐、最新活动 bt=业务标识（已定义BusinessIdentifier），ct=客户端标识（1指iOS客户端）
-  class func homeProductRecommendation(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    let param = ["bt":"0","ct":"1"]
-    BaseRequest.shared.postRequest(url: XZGURL.homeList, parameters: param, completionHandler: completionHandler)
-  }
   
   
   /// 小诸葛新首页 获取应用url列表

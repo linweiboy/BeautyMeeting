@@ -29,9 +29,22 @@ class UserVC: UIViewController,LoadingPresenterProtocol,VcDefaultConfigProtocol 
   }
   
   func headerClick() {
-    let vc = LoginVC()
-//    vc.entryRegisterVCType = .push
-    pushTo(vc)
+    let noLoginView = NoLoginShowView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 280.ratioHeight, height: 190.ratioWidth)))
+    noLoginView.showView()
+    noLoginView.loginClosureClick = {[unowned self] tag in
+      switch tag {
+      case 10:
+        let vc = LoginVC()
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+      case 11:
+        let vc = RegisterVC()
+        vc.entryRegisterVCType = .present
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+      default:break
+      }
+    }
   }
   
 }

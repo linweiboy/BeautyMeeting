@@ -13,7 +13,6 @@ class MemberApplyVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
   fileprivate let nameTF = UITextField()
   fileprivate let idCardTF = UITextField()
   fileprivate let sixTF = UITextField()
-  fileprivate let phoneTF = UITextField()
   fileprivate let applyCityTF = UITextField()
   fileprivate let addressTF = UITextField()
   
@@ -37,7 +36,7 @@ class MemberApplyVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
 
 extension MemberApplyVC{
   func createView() {
-    let mainView = ApplyView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, phoneTF: phoneTF, applyCityTF: applyCityTF, addressTF: addressTF)
+    let mainView = ApplyView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, applyCityTF: applyCityTF, addressTF: addressTF)
     self.view.addSubview(mainView)
     mainView.snp.makeConstraints { (make) in
       make.top.left.right.equalTo(self.view)

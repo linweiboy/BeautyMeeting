@@ -109,20 +109,20 @@ class LoginVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol,Loading
     
     
 //    if let source = AchieveSource.shared.unifySource {
-//      self.view.addSubview(registerBT)
-//      let color = UIColor.rgbValue(red: 255, green: 127, blue: 0)
-//      let oneAttDic = [NSAttributedStringKey.underlineStyle:NSUnderlineStyle.styleSingle.rawValue,
-//                       NSAttributedStringKey.underlineColor:color,
-//                       NSAttributedStringKey.foregroundColor:color] as [NSAttributedStringKey : Any]
-//      let oneAtt = NSAttributedString(string: source.loginVoucher, attributes: oneAttDic)
-//      registerBT.setAttributedTitle(oneAtt, for: .normal)
-//      registerBT.addTarget(self, action: #selector(registerClick), for: .touchUpInside)
-//      registerBT.snp.makeConstraints { (make) in
-//        make.top.equalTo(loginBT.snp.bottom).offset(25)
-//        make.left.equalTo(15)
-//        make.right.equalTo(-15)
-//        make.height.equalTo(CGDefine.height.maxButton)
-//      }
+      self.view.addSubview(registerBT)
+      let color = UIColor.rgbValue(red: 255, green: 127, blue: 0)
+      let oneAttDic = [NSAttributedStringKey.underlineStyle:NSUnderlineStyle.styleSingle.rawValue,
+                       NSAttributedStringKey.underlineColor:color,
+                       NSAttributedStringKey.foregroundColor:color] as [NSAttributedStringKey : Any]
+      let oneAtt = NSAttributedString(string: "注册有奖", attributes: oneAttDic)
+      registerBT.setAttributedTitle(oneAtt, for: .normal)
+      registerBT.addTarget(self, action: #selector(registerClick), for: .touchUpInside)
+      registerBT.snp.makeConstraints { (make) in
+        make.top.equalTo(loginBT.snp.bottom).offset(25)
+        make.left.equalTo(15)
+        make.right.equalTo(-15)
+        make.height.equalTo(CGDefine.height.maxButton)
+      }
 //    }
    
   }

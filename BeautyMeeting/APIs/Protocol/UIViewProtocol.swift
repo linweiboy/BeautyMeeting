@@ -8,34 +8,34 @@
 
 
 //MARK: 页面无数据时 添加无数据view
-//protocol TableViewNoDateAddViewProtocol {
-//  func addNoDataView(title:String,btTitle:String?,btClick:(()->())?)
-//  func removeNoDataView()
-//}
-//
-//extension TableViewNoDateAddViewProtocol where Self:UIView {
-//  
-//  func addNoDataView(title:String,btTitle:String?,btClick:(()->())?) {
-//    removeNoDataView()
-//    let noView = NoDataView(tipTitle:title,btTitle:btTitle)
-//    addSubview(noView)
-//    noView.clickClo = { btClick?() }
-//    noView.backgroundColor = self.backgroundColor
-//    noView.snp.makeConstraints { (make) in
-//      make.edges.equalTo(self)
-//      make.width.equalTo(self)
-//      make.height.equalTo(self)
-//    }
-//  }
-//  
-//  func removeNoDataView() {
-//    let views = self.subviews
-//    views.forEach { (subV) in
-//      if subV is NoDataView { subV.removeFromSuperview() }
-//    }
-//  }
-//}
-//
+protocol TableViewNoDateAddViewProtocol {
+  func addNoDataView(title:String,btTitle:String?,btClick:(()->())?)
+  func removeNoDataView()
+}
+
+extension TableViewNoDateAddViewProtocol where Self:UIView {
+  
+  func addNoDataView(title:String,btTitle:String?,btClick:(()->())?) {
+    removeNoDataView()
+    let noView = NoDataView(tipTitle:title,btTitle:btTitle)
+    addSubview(noView)
+    noView.clickClo = { btClick?() }
+    noView.backgroundColor = self.backgroundColor
+    noView.snp.makeConstraints { (make) in
+      make.edges.equalTo(self)
+      make.width.equalTo(self)
+      make.height.equalTo(self)
+    }
+  }
+  
+  func removeNoDataView() {
+    let views = self.subviews
+    views.forEach { (subV) in
+      if subV is NoDataView { subV.removeFromSuperview() }
+    }
+  }
+}
+
 //
 ////活期详情head
 //protocol ShowAccountInfoProtocol {
