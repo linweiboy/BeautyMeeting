@@ -1084,7 +1084,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDTNJJH4S7;
+				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TanLinwei.BeautyMeeting;
@@ -1105,7 +1105,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDTNJJH4S7;
+				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TanLinwei.BeautyMeeting;
