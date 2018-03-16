@@ -24,6 +24,7 @@ class MainTabBarVC: UITabBarController,UITabBarControllerDelegate,LoginExpiredPr
       addSubVC()
     }
   
+  //添加子控制器
   func addSubVC() {
     addChildVC(homeVC, title: "首页", image: "tabbar_home", selectedImage: "tabbar_home_selected")
     addChildVC(chatVC, title: "聊天", image: "tabbar_Invest", selectedImage: "tabbar_Invest_selected")
