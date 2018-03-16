@@ -13,7 +13,6 @@ class HomeMeiDuCell: UITableViewCell, ReusableView {
   
   fileprivate let headerIMV = UIImageView() //头像
   fileprivate let bigDetailIMV = RoundCornerIMV()
-  fileprivate let smallDetailIMV = RoundCornerIMV()
   fileprivate let nameLB = UILabel() //作者名
   fileprivate let descriptLB = UILabel() //详情
   fileprivate let titleNameLB = UILabel()
@@ -38,18 +37,11 @@ class HomeMeiDuCell: UITableViewCell, ReusableView {
     bigDetailIMV.snp.makeConstraints { (make) in
       make.top.equalTo(headerView.snp.bottom).offset(5.ratioHeight)
       make.left.equalTo(15)
-      make.width.equalTo(180.ratioWidth)
+      make.right.equalTo(-15)
       make.height.equalTo(120.ratioHeight)
     }
     
-    addSubview(smallDetailIMV)
-    smallDetailIMV.image = UIImage(named: "small_defualt")
-    smallDetailIMV.snp.makeConstraints { (make) in
-      make.top.equalTo(headerView.snp.bottom).offset(5.ratioHeight)
-      make.left.equalTo(bigDetailIMV.snp.right).offset(8)
-      make.right.equalTo(5)
-      make.height.equalTo(120.ratioHeight)
-    }
+
     
     addSubview(titleNameLB)
     titleNameLB.decorateStyleOfLB(title: "摸鱼儿.更能消几番风月", textColor: .black, textFont: 13.ratioHeight)
@@ -75,8 +67,8 @@ class HomeMeiDuCell: UITableViewCell, ReusableView {
     
   }
   
-  func showDate() {
-
+  func showDate(_ model:CatalogDataModel) {
+    bigDetailIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -93,7 +85,8 @@ class HomeActiveCell: UITableViewCell, ReusableView {
   fileprivate let activityIMV = UIImageView() //活动图片
   fileprivate let acttivityTimeLB = UILabel() //活动时间
   
-  func showData() {
+  func showDate(_ model:CatalogDataModel) {
+    activityIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
   }
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
@@ -152,10 +145,9 @@ class HomeGuessCell: UITableViewCell, ReusableView {
   fileprivate let guessIMV = UIImageView()
   fileprivate let titLB = UILabel()
   
-  func showData() {
-//    guessIMV.kf.setImage(with: URL(string: model.imgUrl), placeholder: UIImage(named: "img_replace"))
+  func showDate(_ model:CatalogDataModel) {
+    guessIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
   }
-  
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -240,7 +232,7 @@ class CellMeiDuHeaderView: UIView {
     }
     
     addSubview(activeBT)
-    activeBT.setImage(UIImage(named: "home_active"), for: .normal)
+    activeBT.setImage(UIImage(named: ""), for: .normal)
     activeBT.snp.makeConstraints { (make) in
       make.centerY.equalTo(self)
       make.right.equalTo(0)

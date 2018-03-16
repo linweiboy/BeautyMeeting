@@ -146,11 +146,11 @@ extension OpenUrlVC: WKNavigationDelegate  {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     hiddenLoadingView()
     //确定分享按钮是否出来
-    webView.evaluateJavaScript(ShareContent_jsScript) { [unowned self] (result, error) in
-      if let str = result as? String {
-        self.rightView.isHidden = str.isEmpty ? true:false
-      }
-    }
+//    webView.evaluateJavaScript(ShareContent_jsScript) { [unowned self] (result, error) in
+//      if let str = result as? String {
+//        self.rightView.isHidden = str.isEmpty ? true:false
+//      }
+//    }
     //确定关闭按钮是否出来
     closeVCBT.isHidden = webView.canGoBack ? false:true
     

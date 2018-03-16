@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
   
@@ -16,49 +17,57 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
   fileprivate var firstHeaderView = HomeTabFirstHeaderView()
   fileprivate let titles = ["美会介绍","美会播报","美会商院","美会联盟"]
   fileprivate var bannarModelArray: [BannarModel] = []
+  fileprivate var noticeModelArray: [ArticleModel] = []
+  fileprivate var portalModelArray: [HomePortalModel] = []
   
     override func viewDidLoad() {
         super.viewDidLoad()
       defaultConfig()
       createView()
       refreshData()
+      mainTableView.mj_header.beginRefreshing()
     }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    firstHeaderView.showNoticeDate(["第一天","第二天","第三天","第四天"])
-  }
   
-  func refreshData() {
+  @objc func refreshData() {
     //获取首页的推荐的产品
     HomeRequest.homeProductRecommendation { [weak self] (result) in
       guard let strongSelf = self else{return}
-//      strongSelf.mainTableView.mj_header.endRefreshing()
+      
       switch result {
       case .success(let json):
-        printLog(message: "首页数据\(json)")
+        strongSelf.portalModelArray.removeAll()
+        strongSelf.portalModelArray += HomePortalModel.parseList(json)
+        strongSelf.mainTableView.reloadData()
       case .failure(let error):
         strongSelf.showMessage(error.reason)
       }
     }
     
-    //
+    //消息公告
     HomeRequest.homeNotice { [weak self](result) in
       guard let strongSelf = self else{return}
       switch result {
       case .success(let json):
-        printLog(message: "消息公告\(json)")
+        let resultArray = ArticleModel.parseListForData(json)
+        if resultArray.count != 0 {
+          strongSelf.noticeModelArray.removeAll()
+          let sliceArray = Array(resultArray[0..<3])
+          strongSelf.noticeModelArray += sliceArray
+          let titleArray = sliceArray.map {$0.title}
+          strongSelf.firstHeaderView.showNoticeDate(titleArray)
+        }
+        strongSelf.mainTableView.reloadData()
       case .failure(let errpr):
         strongSelf.showMessage(errpr.reason)
       }
     }
     
-    
+    //首页banner
     HomeRequest.homeBanner { [weak self](result) in
       guard let strongSelf = self else{return}
+      strongSelf.mainTableView.mj_header.endRefreshing()
       switch result {
       case .success(let json):
-//        printLog(message: json)
         let modelArray = BannarModel.parseListForData(json)
         if modelArray.count != 0 {
           strongSelf.bannarModelArray.removeAll()
@@ -66,6 +75,7 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
           let urlArray = modelArray.map { $0.imgUrl }
           strongSelf.firstHeaderView.showBannerDate(urlArray)
         }
+        strongSelf.mainTableView.reloadData()
       case .failure(let errpr):
         strongSelf.showMessage(errpr.reason)
       }
@@ -94,7 +104,12 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
   
   //MARK: 点击事件
   func clickBanner(_ tag:Int) {
-    
+    let model = bannarModelArray[tag]
+    guard !model.link.isEmpty else {return}
+    let vc = OpenUrlVC()
+    vc.loadUrl = model.link
+    vc.navItemTitle = model.title
+    pushTo(vc)
   }
   
   //消息更多点击
@@ -120,16 +135,20 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
 extension HomeVC:UITableViewDelegate,UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 3
+    return portalModelArray.count
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
     if section == 0 {
-      return 4
+      let arrar = portalModelArray[0]
+      return arrar.catalogData.count
     }else if section == 1{
-      return 3
+      let arrar = portalModelArray[1]
+      return arrar.catalogData.count
     }else if section == 2{
-      return 2
+      let arrar = portalModelArray[2]
+      return arrar.catalogData.count
     }
     return 0
   }
@@ -148,14 +167,27 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let dataArray = portalModelArray[indexPath.section]
     if indexPath.section == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: HomeMeiDuCell.reuseIdentifier) as! HomeMeiDuCell
+      if portalModelArray.count != 0 {
+        let model = dataArray.catalogData[indexPath.row]
+        cell.showDate(model)
+      }
       return cell
     }else if indexPath.section == 1{
       let cell = tableView.dequeueReusableCell(withIdentifier: HomeActiveCell.reuseIdentifier) as! HomeActiveCell
+      if portalModelArray.count != 0 {
+        let model = dataArray.catalogData[indexPath.row]
+        cell.showDate(model)
+      }
       return cell
     }else if indexPath.section == 2{
       let cell = tableView.dequeueReusableCell(withIdentifier: HomeGuessCell.reuseIdentifier) as! HomeGuessCell
+      if portalModelArray.count != 0 {
+        let model = dataArray.catalogData[indexPath.row]
+        cell.showDate(model)
+      }
       return cell
     }
     return UITableViewCell()
@@ -212,6 +244,19 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
     return UIView()
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: false)
+    let dataList = portalModelArray[indexPath.section].catalogData
+    if  portalModelArray.count != 0 {
+      let model = dataList[indexPath.row]
+      let htmlVC = OpenHtmlVC()
+      htmlVC.navItemTitle = model.title
+      htmlVC.htmlContent = model.content
+      pushTo(htmlVC)
+
+    }
+  }
+  
 }
 
 extension HomeVC {
@@ -227,6 +272,7 @@ extension HomeVC {
     mainTableView.showsVerticalScrollIndicator = false
     mainTableView.backgroundColor =  .backGround
     mainTableView.registerHeadCell(HomeTabFirstHeaderView.self)
+    mainTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
     view.addSubview(mainTableView)
     mainTableView.register(HomeMeiDuCell.self)
     mainTableView.register(HomeActiveCell.self)
