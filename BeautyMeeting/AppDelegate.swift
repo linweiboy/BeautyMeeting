@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let mainVC = MainTabBarVC()
   static let shared = UIApplication.shared.delegate as! AppDelegate
 
+    //添加了一行注释
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.backgroundColor = .white
