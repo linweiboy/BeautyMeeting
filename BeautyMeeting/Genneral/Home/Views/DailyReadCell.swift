@@ -54,10 +54,10 @@ class DailyReadCell: UITableViewCell, ReusableView, ProtocolBorderLineView {
     }
   }
   
-  func showData() {
-//    newsImageView.kf.setImage(with: URL(string:model.coverUrl), placeholder: UIImage(named: "Media_BigLogo"))
+  func showData(_ model:DailyReadModel) {
+    newsImageView.kf.setImage(with: URL(string:model.coverUrl), placeholder: UIImage(named: "home_meidu"))
 //    websiteIconIM.kf.setImage(with: URL(string: model.backupCoverUrl), placeholder: UIImage(named:"Media_MinLogo"))
-//    newsDetailLB.text = model.title
+    newsTitleLB.text = model.title
 //    let array = model.time.components(separatedBy: " ")
 //    newsTime.text = array[0]
   }

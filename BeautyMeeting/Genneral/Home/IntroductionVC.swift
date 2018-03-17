@@ -8,7 +8,8 @@
 
 import UIKit
 
-class IntroductionVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol {
+class IntroductionVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol {
+  
   fileprivate let mainTableView = UITableView()
   
     override func viewDidLoad() {
@@ -17,10 +18,26 @@ class IntroductionVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol
       defaultConfig()
       popLastPage()
       createView()
-
+      refreshData()
     }
 
-    
+  @objc func refreshData() {
+    showLoadingView(nil)
+    HomeRequest.homeListTypeCode(typeCode: "introduce") {[weak self](result) in
+      guard let strongSelf = self else{return}
+      strongSelf.hiddenLoadingView()
+//      strongSelf.mainTableView.mj_header.endRefreshing()
+      switch result {
+      case .success(let json):
+        printLog(message: json)
+//        strongSelf.dataList.removeAll()
+//        strongSelf.dataList += DailyReadModel.parseList(json)
+        strongSelf.mainTableView.reloadData()
+      case .failure(let errpr):
+        strongSelf.showMessage(errpr.reason)
+      }
+    }
+  }
 
 }
 

@@ -44,7 +44,7 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
     }
     
     //消息公告
-    HomeRequest.homeNotice { [weak self](result) in
+    HomeRequest.homeListTypeCode(typeCode: "notice"){[weak self](result) in
       guard let strongSelf = self else{return}
       switch result {
       case .success(let json):
@@ -251,7 +251,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       let model = dataList[indexPath.row]
       let htmlVC = OpenHtmlVC()
       htmlVC.navItemTitle = model.title
-      htmlVC.htmlContent = model.content
+      htmlVC.htmlContent = model.description
       pushTo(htmlVC)
 
     }

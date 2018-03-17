@@ -24,9 +24,18 @@ class HomeRequest:ProtocolRequestUnifyHandle {
   }
 
   
-  ///获取消息公告 typeCode=业务类型(哪个界面的 notice)
-  class func homeNotice(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: ["typeCode":"notice"], urlStr: XZGURL.noticeCode, handle: completionHandler)
+  /*获取列表 typeCode=业务类型
+  消息公告 notice,
+  每日美读 dailyreading
+  特别推荐 recommend
+  节目预报 forecast
+  美会商院 businesscollege
+  美会介绍 introduce
+  美会播报 broadcast
+  美会联盟 union)
+  */
+  class func homeListTypeCode(typeCode:String, completionHandler: @escaping (RequestResult<JSON>) -> ()) {
+    unifyPostRequest(parameter: ["typeCode":typeCode], urlStr: XZGURL.noticeCode, handle: completionHandler)
   }
   
   

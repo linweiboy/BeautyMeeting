@@ -69,6 +69,8 @@ class HomeMeiDuCell: UITableViewCell, ReusableView {
   
   func showDate(_ model:CatalogDataModel) {
     bigDetailIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
+//    nameLB.text = model.author
+    timeLimitLB.text = model.time
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -87,6 +89,8 @@ class HomeActiveCell: UITableViewCell, ReusableView {
   
   func showDate(_ model:CatalogDataModel) {
     activityIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
+    activityTitleLB.text = model.title
+    acttivityTimeLB.text = model.time
   }
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
@@ -147,6 +151,7 @@ class HomeGuessCell: UITableViewCell, ReusableView {
   
   func showDate(_ model:CatalogDataModel) {
     guessIMV.kf.setImage(with: URL(string:model.coverUrl) , placeholder: UIImage(named: "big_defualt"))
+    titLB.text = model.title
   }
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
     super.init(style: style, reuseIdentifier: reuseIdentifier)

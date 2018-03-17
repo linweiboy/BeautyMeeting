@@ -94,6 +94,7 @@
 		955AA7D5202C4E8400E8E7A9 /* OpenUrlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7C5202C4E8400E8E7A9 /* OpenUrlVC.swift */; };
 		955AA7D7202FCF3600E8E7A9 /* VideoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7D6202FCF3600E8E7A9 /* VideoViews.swift */; };
 		955D81EC204CE80B0008F608 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955D81EB204CE80B0008F608 /* HomeModels.swift */; };
+		958F0B57205BADC300FDBD99 /* DailyReadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F0B56205BADC300FDBD99 /* DailyReadModels.swift */; };
 		95A9D8EC2057A532003218C1 /* VideoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9D8EB2057A532003218C1 /* VideoRequest.swift */; };
 		95A9D8EE2058BF46003218C1 /* NoLoginShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9D8ED2058BF46003218C1 /* NoLoginShowView.swift */; };
 		95DD819B20385EA000E6CC18 /* WRPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD819720385EA000E6CC18 /* WRPageControl.swift */; };
@@ -227,6 +228,7 @@
 		955AA7C5202C4E8400E8E7A9 /* OpenUrlVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenUrlVC.swift; sourceTree = "<group>"; };
 		955AA7D6202FCF3600E8E7A9 /* VideoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViews.swift; sourceTree = "<group>"; };
 		955D81EB204CE80B0008F608 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
+		958F0B56205BADC300FDBD99 /* DailyReadModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReadModels.swift; sourceTree = "<group>"; };
 		95A9D8EB2057A532003218C1 /* VideoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRequest.swift; sourceTree = "<group>"; };
 		95A9D8ED2058BF46003218C1 /* NoLoginShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLoginShowView.swift; sourceTree = "<group>"; };
 		95DD819720385EA000E6CC18 /* WRPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRPageControl.swift; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 			isa = PBXGroup;
 			children = (
 				955D81EB204CE80B0008F608 /* HomeModels.swift */,
+				958F0B56205BADC300FDBD99 /* DailyReadModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				955AA75E2021B48A00E8E7A9 /* UIButtonExtension.swift in Sources */,
 				95FD52D520492755005D15BB /* RegisterTwoStepVC.swift in Sources */,
 				95FD52DA20492D29005D15BB /* RegisterView.swift in Sources */,
+				958F0B57205BADC300FDBD99 /* DailyReadModels.swift in Sources */,
 				955AA7792023F76600E8E7A9 /* HomeCells.swift in Sources */,
 				955AA7602021B48A00E8E7A9 /* UITableViewExtension.swift in Sources */,
 				955AA7772021EFAD00E8E7A9 /* HomeTabHeaderViews.swift in Sources */,
