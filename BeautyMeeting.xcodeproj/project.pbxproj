@@ -94,6 +94,9 @@
 		955AA7D5202C4E8400E8E7A9 /* OpenUrlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7C5202C4E8400E8E7A9 /* OpenUrlVC.swift */; };
 		955AA7D7202FCF3600E8E7A9 /* VideoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955AA7D6202FCF3600E8E7A9 /* VideoViews.swift */; };
 		955D81EC204CE80B0008F608 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955D81EB204CE80B0008F608 /* HomeModels.swift */; };
+		957F990B205F4878003916D0 /* MeiHuiPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F990A205F4878003916D0 /* MeiHuiPlayVC.swift */; };
+		957F990D205F6556003916D0 /* MeiHuiBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F990C205F6556003916D0 /* MeiHuiBusinessVC.swift */; };
+		957F990F205F6BD8003916D0 /* MeiHuiInductionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F990E205F6BD8003916D0 /* MeiHuiInductionSubVC.swift */; };
 		958F0B57205BADC300FDBD99 /* DailyReadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F0B56205BADC300FDBD99 /* DailyReadModels.swift */; };
 		95A9D8EC2057A532003218C1 /* VideoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9D8EB2057A532003218C1 /* VideoRequest.swift */; };
 		95A9D8EE2058BF46003218C1 /* NoLoginShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9D8ED2058BF46003218C1 /* NoLoginShowView.swift */; };
@@ -228,6 +231,9 @@
 		955AA7C5202C4E8400E8E7A9 /* OpenUrlVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenUrlVC.swift; sourceTree = "<group>"; };
 		955AA7D6202FCF3600E8E7A9 /* VideoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViews.swift; sourceTree = "<group>"; };
 		955D81EB204CE80B0008F608 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
+		957F990A205F4878003916D0 /* MeiHuiPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeiHuiPlayVC.swift; sourceTree = "<group>"; };
+		957F990C205F6556003916D0 /* MeiHuiBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeiHuiBusinessVC.swift; sourceTree = "<group>"; };
+		957F990E205F6BD8003916D0 /* MeiHuiInductionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeiHuiInductionSubVC.swift; sourceTree = "<group>"; };
 		958F0B56205BADC300FDBD99 /* DailyReadModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReadModels.swift; sourceTree = "<group>"; };
 		95A9D8EB2057A532003218C1 /* VideoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRequest.swift; sourceTree = "<group>"; };
 		95A9D8ED2058BF46003218C1 /* NoLoginShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLoginShowView.swift; sourceTree = "<group>"; };
@@ -348,9 +354,12 @@
 				955D81EA204CE7F40008F608 /* Models */,
 				955AA72B202194DF00E8E7A9 /* Views */,
 				955AA6962018678100E8E7A9 /* HomeVC.swift */,
-				955AA77A2026F2C200E8E7A9 /* DailyReadVC.swift */,
 				955AA78C2029936700E8E7A9 /* IntroductionVC.swift */,
+				957F990A205F4878003916D0 /* MeiHuiPlayVC.swift */,
+				957F990C205F6556003916D0 /* MeiHuiBusinessVC.swift */,
 				955AA792202996C000E8E7A9 /* UnionVC.swift */,
+				957F990E205F6BD8003916D0 /* MeiHuiInductionSubVC.swift */,
+				955AA77A2026F2C200E8E7A9 /* DailyReadVC.swift */,
 				955AA79420299E1D00E8E7A9 /* ActivityListVC.swift */,
 			);
 			path = Home;
@@ -867,7 +876,9 @@
 				955AA7D2202C4E8400E8E7A9 /* VersionUpdateModel.swift in Sources */,
 				955AA7D0202C4E8400E8E7A9 /* SocialShareHelp.swift in Sources */,
 				955AA7612021B48A00E8E7A9 /* UITextFieldExtension.swift in Sources */,
+				957F990F205F6BD8003916D0 /* MeiHuiInductionSubVC.swift in Sources */,
 				955AA79720299E3400E8E7A9 /* ActivityViews.swift in Sources */,
+				957F990B205F4878003916D0 /* MeiHuiPlayVC.swift in Sources */,
 				955AA75C2021B48A00E8E7A9 /* Logging.m in Sources */,
 				95FD52D1204926FF005D15BB /* ForgetLoginPasswordVC.swift in Sources */,
 				955AA6C320186F1300E8E7A9 /* NotificationName.swift in Sources */,
@@ -896,6 +907,7 @@
 				955AA7CB202C4E8400E8E7A9 /* RichTextProtocolView.swift in Sources */,
 				95FD52C22049205E005D15BB /* ModifyPhoneNumTwoStepVC.swift in Sources */,
 				95FD52D2204926FF005D15BB /* LoginVC.swift in Sources */,
+				957F990D205F6556003916D0 /* MeiHuiBusinessVC.swift in Sources */,
 				955AA6C620186F1300E8E7A9 /* URLDefine.swift in Sources */,
 				955AA7542021B48A00E8E7A9 /* AccountManage.swift in Sources */,
 				95FD52BD20491E7B005D15BB /* CozyNoteView.swift in Sources */,

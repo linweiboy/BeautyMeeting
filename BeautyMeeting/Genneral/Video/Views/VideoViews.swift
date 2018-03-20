@@ -9,19 +9,19 @@
 import Foundation
 import UIKit
 
-class VideoTabHeaderView: UICollectionReusableView {
+class VideoTabHeaderView: UITableViewHeaderFooterView, ReusableView {
   
   var headerClickClosuer:((_ tag: Int)->())?
   
   fileprivate var popularizeView = PopularizeView()
   
-  override init(frame:CGRect) {
-    super.init(frame: frame)
+  override init(reuseIdentifier: String?) {
+    super.init(reuseIdentifier: reuseIdentifier)
     self.backgroundColor =  .backGround
     
-    let titles = ["栏目播报","名师讲堂","我要播报"]
-    let images = ["mediue","home_bankstoremanage","SafeGuarantee"]
-    popularizeView = PopularizeView(count: 3, markStr: "视频")
+    let titles = ["栏目播报","健康讲堂","情感天地","我要播报"]
+    let images = ["mediue","home_bankstoremanage","home_bankstoremanage","SafeGuarantee"]
+    popularizeView = PopularizeView(count: 4)
     addSubview(popularizeView)
     popularizeView.fileValueWith(titles: titles, imageNames: images)
     popularizeView.selectClosure = {[unowned self] (tag) in
@@ -66,28 +66,25 @@ class VideoCustomTitleView: UICollectionReusableView, ReusableView {
 
 
 
-class VideoCell: UICollectionViewCell,ReusableView {
+class VideoCell: UITableViewCell, ReusableView {
   
   fileprivate let backIMV = UIImageView()
   fileprivate let detailLB = UILabel()
   fileprivate let nameLB = UILabel()
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    self.backgroundColor = .white
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?){
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+//    self.backgroundColor = .white
     
     addSubview(backIMV)
     backIMV.image = UIImage(named: "video_defulat")
+    backIMV.layer.cornerRadius = 5
+    backIMV.layer.masksToBounds = true
     backIMV.snp.makeConstraints { (make) in
-      make.top.left.right.equalTo(self)
-      make.height.equalTo(100.ratioHeight)
-    }
-    
-    let nameView = CustomNameView(nameLB: nameLB)
-    addSubview(nameView)
-    nameView.snp.makeConstraints { (make) in
-      make.left.right.bottom.equalTo(backIMV)
-      make.height.equalTo(22.ratioHeight)
+      make.top.equalTo(10)
+      make.left.equalTo(15.ratioWidth)
+      make.right.equalTo(-15.ratioWidth)
+      make.height.equalTo(120.ratioHeight)
     }
     
     let playIMV = UIImageView()
@@ -105,6 +102,16 @@ class VideoCell: UICollectionViewCell,ReusableView {
     detailLB.snp.makeConstraints { (make) in
       make.left.equalTo(backIMV)
       make.top.equalTo(backIMV.snp.bottom).offset(8)
+    }
+    
+    let line = UIView()
+    addSubview(line)
+    line.backgroundColor = UIColor.backGround
+    line.snp.makeConstraints { (make) in
+      make.left.equalTo(15.ratioWidth)
+      make.right.equalTo(-15.ratioWidth)
+      make.bottom.equalTo(self)
+      make.height.equalTo(0.5)
     }
     
   }

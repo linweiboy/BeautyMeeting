@@ -113,11 +113,11 @@ class ActiveListCell: UITableViewCell, ReusableView {
     }
   }
   
-//  func showData(_ model: DiscoverListModel) {
-//    activityTitleLB.text = model.title
-//    activityIMV.kf.setImage(with: URL(string: model.imgUrl), placeholder: UIImage(named: "img_replace"))
-//    acttivityTimeLB.text = model.timeTranform(model.startDate) + "~" + model.timeTranform(model.endDate)
-//  }
+  func showData(_ model: DiscoverListModel) {
+    activityTitleLB.text = model.title
+    activityIMV.kf.setImage(with: URL(string: model.imgUrl), placeholder: UIImage(named: "home_active_defulat"))
+    acttivityTimeLB.text = model.timeTranform(model.startDate) + "~" + model.timeTranform(model.endDate)
+  }
   
   
   required init?(coder aDecoder: NSCoder) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyBoBaoVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
+class ApplyBoBaoVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol {
   
   fileprivate let nameTF = UITextField()
   fileprivate let idCardTF = UITextField()
@@ -26,7 +26,7 @@ class ApplyBoBaoVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
     }
 
   @objc func btnClick() {
-    
+    showMessage("您已提交申请")
   }
 
 
@@ -36,7 +36,7 @@ extension ApplyBoBaoVC {
   
   func createView() {
     
-    let mainView = ApplyView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, applyCityTF: applyCityTF, addressTF: addressTF)
+    let mainView = ApplyBoBaoView(nameTF: nameTF, idCardTF: idCardTF, sixTF: sixTF, applyCityTF: applyCityTF, addressTF: addressTF)
     self.view.addSubview(mainView)
     mainView.snp.makeConstraints { (make) in
       make.top.left.right.equalTo(self.view)

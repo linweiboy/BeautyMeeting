@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import MJRefresh
 
 class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtocol {
 
   
-  fileprivate var playCollectionView:UICollectionView!
-  fileprivate var cellHeader = VideoTabHeaderView()
+  fileprivate let mainTableView = UITableView(frame: .zero, style: .grouped)
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,10 @@ class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtoco
       refreshData()
     }
 
-  func refreshData() {
+  @objc func refreshData() {
     VideoRequest.videoList { [weak self](result) in
       guard let strongSelf = self else{return}
+      strongSelf.mainTableView.mj_header.endRefreshing()
       switch result {
       case .success(let json):
         printLog(message: json)
@@ -46,7 +47,8 @@ class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtoco
     case 11:
       let vc = FamousTeacherVC()
       pushTo(vc)
-    case 12:
+    case 12:showMessage("静待开放")
+    case 13:
       let vc = ApplyBoBaoVC()
       pushTo(vc)
     default:break
@@ -54,67 +56,64 @@ class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtoco
   }
   
 }
-extension VideoVC: UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension VideoVC: UITableViewDataSource,UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 5
+  }
   
-  func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 4
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 130.ratioHeight
+    }
+    return 45.ratioHeight
   }
   
   
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 165.ratioHeight
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCell.reuseIdentifier, for: indexPath) as! VideoCell
-    return cell
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-  }
-  
-  //分组头部、尾部
-  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    
-    if indexPath.section == 0 {
-      cellHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "VideoTabHeaderView", for: indexPath) as! VideoTabHeaderView
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if section == 0 {
+      let cellHeader = VideoTabHeaderView()
       cellHeader.headerClickClosuer = {[unowned self] tag in
         self.headerClick(tag)
       }
-      let oneView = CustomTabHeaderView()
-      oneView.showTitleDateStr("在线直播", moreLBIsHidden: false)
-      oneView.moreClickClosure = {[unowned self] in self.moreClick(indexPath.section)}
-      cellHeader.addSubview(oneView)
-      oneView.snp.makeConstraints({ (make) in
-        make.left.right.equalTo(cellHeader)
+      let oneHeader = CustomTabHeaderView()
+      oneHeader.moreClickClosure = {[unowned self] in self.moreClick(section)}
+      oneHeader.showTitleDateStr("在线直播", moreLBIsHidden: false)
+      cellHeader.addSubview(oneHeader)
+      oneHeader.snp.makeConstraints({ (make) in
+        make.bottom.left.right.equalTo(cellHeader)
         make.height.equalTo(45.ratioHeight)
-        make.bottom.equalTo(cellHeader.snp.bottom)
       })
       return cellHeader
     }else{
-      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: VideoCustomTitleView.reuseIdentifier, for: indexPath) as! VideoCustomTitleView
-      let twoView = CustomTabHeaderView()
-      twoView.showTitleDateStr("演讲沟通", moreLBIsHidden: false)
-      twoView.moreClickClosure = {[unowned self] in self.moreClick(indexPath.section)}
-      headerView.addSubview(twoView)
-      twoView.snp.makeConstraints({ (make) in
-        make.top.left.right.equalTo(headerView)
-        make.height.equalTo(45.ratioHeight)
-      })
-      return headerView
+      let TwoHeaderView = CustomTabHeaderView()
+      TwoHeaderView.moreClickClosure = {[unowned self] in self.moreClick(section)}
+      TwoHeaderView.showTitleDateStr("视频播报", moreLBIsHidden: false)
+      return TwoHeaderView
     }
   }
   
-  //返回分组的头部视图的尺寸，在这里控制分组头部视图的高度
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-    switch section {
-    case 0:
-      return CGSize(width: ScreenWidth, height: 130.ratioHeight)
-    default:break
-    }
-    return CGSize(width: ScreenWidth, height: 50.ratioHeight)
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
   }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return 1
+    }
+    return 4
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.reuseIdentifier) as! VideoCell
+    return cell
+    
+  }
+  
+  
   
 }
 
@@ -124,23 +123,26 @@ extension VideoVC: UICollectionViewDelegate,UICollectionViewDataSource, UICollec
 extension VideoVC {
   
   func createView() {
-    let layout = VideoCellLayout()
-    playCollectionView = {
-      $0.delegate = self
-      $0.dataSource = self
-      $0.decelerationRate = UIScrollViewDecelerationRateFast
-      $0.register(VideoCell.self)
-      $0.registerHeader(VideoCustomTitleView.self)
-      $0.showsHorizontalScrollIndicator = false
-      $0.showsVerticalScrollIndicator = false
-      $0.backgroundColor = self.view.backgroundColor
-      return $0
-    }(UICollectionView(frame: .zero, collectionViewLayout: layout))
-    playCollectionView.register(VideoTabHeaderView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "VideoTabHeaderView")
-    self.view.addSubview(playCollectionView)
-    playCollectionView.snp.makeConstraints { (make) in
-      make.edges.equalTo(self.view)
+    
+    mainTableView.separatorStyle = .none
+    if #available(iOS 11.0, *) {
+      mainTableView.contentInsetAdjustmentBehavior = .never
     }
+    mainTableView.delegate = self
+    mainTableView.dataSource = self
+    mainTableView.showsHorizontalScrollIndicator = false
+    mainTableView.showsVerticalScrollIndicator = false
+    mainTableView.clearOtioseSeparatorLine()
+    mainTableView.backgroundColor =  .backGround
+    mainTableView.registerHeadCell(VideoTabHeaderView.self)
+    mainTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
+    view.addSubview(mainTableView)
+    mainTableView.register(VideoCell.self)
+    mainTableView.snp.makeConstraints { (make) in
+      make.left.right.bottom.equalTo(view)
+      make.top.equalTo(0)
+    }
+    
   }
   
 }

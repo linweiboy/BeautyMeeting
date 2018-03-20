@@ -105,7 +105,8 @@ struct HomePortalModel: ProtocolUnifyModel {
   }
 }
 
-struct CatalogDataModel: ProtocolUnifyModel{
+struct CatalogDataModel: ProtocolUnifyModel,ProtocolParseModelList{
+  typealias type = CatalogDataModel
   
   let itemId: String
   let isRecommend: String

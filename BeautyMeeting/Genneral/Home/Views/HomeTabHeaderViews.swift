@@ -16,11 +16,11 @@ enum NoticeClickType {
 class HomeTabFirstHeaderView: UITableViewHeaderFooterView, ReusableView {
   
   var clickBannerClosure:((_ index:Int)->())? ////广告视图点击
-  var noticeClickClosure:((_ type:NoticeClickType, _ index:Int)->())? //广告点击
+//  var noticeClickClosure:((_ type:NoticeClickType, _ index:Int)->())? //广告点击
   
   fileprivate let bannerView = TopBannerView() //广告视图
-  fileprivate var popularizeView = PopularizeView()
-  fileprivate let noticeView = HomeNoticeView()  //公告视图
+//  fileprivate var popularizeView = PopularizeView()
+//  fileprivate let noticeView = HomeNoticeView()  //公告视图
 
   override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)
@@ -35,17 +35,17 @@ class HomeTabFirstHeaderView: UITableViewHeaderFooterView, ReusableView {
       make.height.equalTo(150.ratioHeight)
     })
     
-    //广告视图
-    addSubview(noticeView)
-    noticeView.passCurrentIndexClosure = {[unowned self] index in
-      if self.noticeClickClosure != nil {self.noticeClickClosure!(.Deatil,index)}
-    }
-    noticeView.snp.makeConstraints { (make) in
-      make.top.equalTo(bannerView.snp.bottom)
-      make.left.equalTo(self)
-      make.width.equalTo(ScreenWidth)
-      make.height.equalTo(25.ratioHeight)
-    }
+//    //广告视图
+//    addSubview(noticeView)
+//    noticeView.passCurrentIndexClosure = {[unowned self] index in
+//      if self.noticeClickClosure != nil {self.noticeClickClosure!(.Deatil,index)}
+//    }
+//    noticeView.snp.makeConstraints { (make) in
+//      make.top.equalTo(bannerView.snp.bottom)
+//      make.left.equalTo(self)
+//      make.width.equalTo(ScreenWidth)
+//      make.height.equalTo(25.ratioHeight)
+//    }
     
     
   }
@@ -54,9 +54,9 @@ class HomeTabFirstHeaderView: UITableViewHeaderFooterView, ReusableView {
     bannerView.startScrollWithImageList(bannerUrlList)
   }
   
-  func showNoticeDate(_ noticeList:[String]) {
-    noticeView.startScrollWithTitleArray(noticeList)
-  }
+//  func showNoticeDate(_ noticeList:[String]) {
+//    noticeView.startScrollWithTitleArray(noticeList)
+//  }
   
   
   required init?(coder aDecoder: NSCoder) {

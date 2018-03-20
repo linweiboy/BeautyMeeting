@@ -82,11 +82,11 @@ extension ActivityListVC: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
-//    guard !dataList.isEmpty else {return}
-//    let model = dataList[indexPath.row]
-//    let vc = OpenUrlVC()
-//    vc.loadUrl = model.link
-//    pushTo(vc)
+    guard !dataList.isEmpty else {return}
+    let model = dataList[indexPath.row]
+    let vc = OpenUrlVC()
+    vc.loadUrl = model.link
+    pushTo(vc)
   }
   
 }
@@ -95,15 +95,15 @@ extension ActivityListVC: UITableViewDelegate {
 extension ActivityListVC: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return dataList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ActiveListCell.reuseIdentifier) as! ActiveListCell
-//    if !dataList.isEmpty {
-//      let model = dataList[indexPath.row]
-//      cell.showData(model)
-//    }
+    if !dataList.isEmpty {
+      let model = dataList[indexPath.row]
+      cell.showData(model)
+    }
     return cell
   }
   

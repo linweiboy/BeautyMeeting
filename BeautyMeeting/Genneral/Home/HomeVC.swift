@@ -43,24 +43,24 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
       }
     }
     
-    //消息公告
-    HomeRequest.homeListTypeCode(typeCode: "notice"){[weak self](result) in
-      guard let strongSelf = self else{return}
-      switch result {
-      case .success(let json):
-        let resultArray = ArticleModel.parseListForData(json)
-        if resultArray.count != 0 {
-          strongSelf.noticeModelArray.removeAll()
-          let sliceArray = Array(resultArray[0..<3])
-          strongSelf.noticeModelArray += sliceArray
-          let titleArray = sliceArray.map {$0.title}
-          strongSelf.firstHeaderView.showNoticeDate(titleArray)
-        }
-        strongSelf.mainTableView.reloadData()
-      case .failure(let errpr):
-        strongSelf.showMessage(errpr.reason)
-      }
-    }
+//    //消息公告
+//    HomeRequest.homeListTypeCode(typeCode: "notice"){[weak self](result) in
+//      guard let strongSelf = self else{return}
+//      switch result {
+//      case .success(let json):
+//        let resultArray = ArticleModel.parseListForData(json)
+//        if resultArray.count != 0 {
+//          strongSelf.noticeModelArray.removeAll()
+//          let sliceArray = Array(resultArray[0..<3])
+//          strongSelf.noticeModelArray += sliceArray
+//          let titleArray = sliceArray.map {$0.title}
+//          strongSelf.firstHeaderView.showNoticeDate(titleArray)
+//        }
+//        strongSelf.mainTableView.reloadData()
+//      case .failure(let errpr):
+//        strongSelf.showMessage(errpr.reason)
+//      }
+//    }
     
     //首页banner
     HomeRequest.homeBanner { [weak self](result) in
@@ -89,12 +89,14 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
       let vc = IntroductionVC()
       pushTo(vc)
     case 11:
-      break
-    case 12:
-      break
-    case 13:
-      let vc = UnionVC()
+      let vc = MeiHuiPlayVC()
       pushTo(vc)
+    case 12:
+      let vc = MeiHuiBusinessVC()
+      pushTo(vc)
+    case 13:showMessage("联盟对接中")
+//      let vc = UnionVC()
+//      pushTo(vc)
     default:break
     }
 
@@ -155,12 +157,8 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
-    case 0:
-      return 270
-    case 1:
-      return 220
-    case 2:
-      return 200
+    case 0,1,2:
+      return 200.ratioHeight
     default:break
     }
     return 45
@@ -195,7 +193,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if section == 0 {
-      return 312.ratioHeight
+      return 290.ratioHeight
     }
     return 48.ratioHeight
   }
@@ -207,20 +205,20 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       firstHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTabFirstHeaderView.reuseIdentifier) as! HomeTabFirstHeaderView
       
       firstHeaderView.clickBannerClosure = { [unowned self] index in self.clickBanner(index)}
-      firstHeaderView.noticeClickClosure = { [unowned self] (type,index) in
-        self.noticeClick(type, index: index)}
+//      firstHeaderView.noticeClickClosure = { [unowned self] (type,index) in
+//        self.noticeClick(type, index: index)}
       
       firstHeaderView.addSubview(popularizeView)
       popularizeView.snp.makeConstraints { (make) in
         make.height.equalTo(79.ratioHeight)
         make.left.right.equalTo(firstHeaderView)
-        make.top.equalTo(firstHeaderView.snp.top).offset(180.ratioHeight)
+        make.top.equalTo(firstHeaderView.snp.top).offset(160.ratioHeight)
       }
       
       let firstView = CustomTabHeaderView()
       firstHeaderView.addSubview(firstView)
       firstView.moreClickClosure = {[unowned self] in self.moreClick(section)}
-      firstView.showTitleDateStr("每日美读",moreLBIsHidden: false)
+      firstView.showTitleDateStr("节目预告",moreLBIsHidden: false)
       firstView.snp.makeConstraints({ (make) in
         make.top.equalTo(popularizeView.snp.bottom).offset(5.ratioHeight)
         make.left.right.bottom.equalTo(firstHeaderView)
@@ -233,7 +231,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
       return TwoHeaderView
     case 2:
       let ThreeHeaderView = CustomTabHeaderView()
-      ThreeHeaderView.showTitleDateStr("节目预告", moreLBIsHidden: false)
+      ThreeHeaderView.showTitleDateStr("女性新闻", moreLBIsHidden: false)
       ThreeHeaderView.moreClickClosure = {[unowned self] in self.moreClick(section)}
       return ThreeHeaderView
     default:return UIView()

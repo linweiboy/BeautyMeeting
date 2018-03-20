@@ -9,6 +9,7 @@
 import UIKit
 import MJRefresh
 
+//每日美读
 class DailyReadVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol{
   
   //LoadMoreDataProtocol

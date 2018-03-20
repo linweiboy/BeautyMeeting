@@ -24,24 +24,14 @@ class HomeMeiDuCell: UITableViewCell, ReusableView {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.backgroundColor = .white
     
-    let headerView = CellMeiDuHeaderView(headerIMV: headerIMV, nameLB: nameLB, titleLB: descriptLB, activeBT:actionBT)
-    headerIMV.image = UIImage(named:"home_header")
-    addSubview(headerView)
-    headerView.snp.makeConstraints { (make) in
-      make.top.left.right.equalTo(self)
-      make.height.equalTo(50.ratioHeight)
-    }
-    
     addSubview(bigDetailIMV)
     bigDetailIMV.image = UIImage(named: "big_defualt")
     bigDetailIMV.snp.makeConstraints { (make) in
-      make.top.equalTo(headerView.snp.bottom).offset(5.ratioHeight)
+      make.top.equalTo(10)
       make.left.equalTo(15)
       make.right.equalTo(-15)
       make.height.equalTo(120.ratioHeight)
     }
-    
-
     
     addSubview(titleNameLB)
     titleNameLB.decorateStyleOfLB(title: "摸鱼儿.更能消几番风月", textColor: .black, textFont: 13.ratioHeight)
