@@ -9,3 +9,6 @@
 #import "MBProgressHUD/MBProgressHUD.h"
 #import <MJRefresh/MJRefresh.h>
 #import "SPWaterProgressIndicatorView.h"
+
+//融云SDK
+#import <RongIMKit/RongIMKit.h>

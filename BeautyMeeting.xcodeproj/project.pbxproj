@@ -132,6 +132,10 @@
 		95FD52DA20492D29005D15BB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD52D820492D29005D15BB /* RegisterView.swift */; };
 		95FD52DB20492D29005D15BB /* NotReceiveVerifyNumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD52D920492D29005D15BB /* NotReceiveVerifyNumView.swift */; };
 		B4D034A724D5E183F88EF80A /* Pods_BeautyMeeting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */; };
+		B7DA071720626AF100D7689E /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA071620626AF100D7689E /* ChatListVC.swift */; };
+		B7DA071B20626B6E00D7689E /* ChatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA071A20626B6E00D7689E /* ChatDetailVC.swift */; };
+		B7DA071D20626C2B00D7689E /* RCDataSourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA071C20626C2B00D7689E /* RCDataSourceHelper.swift */; };
+		B7DA071F20626E2800D7689E /* RCDataSourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA071E20626E2800D7689E /* RCDataSourceRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -268,6 +272,10 @@
 		95FD52D420492755005D15BB /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		95FD52D820492D29005D15BB /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		95FD52D920492D29005D15BB /* NotReceiveVerifyNumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotReceiveVerifyNumView.swift; sourceTree = "<group>"; };
+		B7DA071620626AF100D7689E /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
+		B7DA071A20626B6E00D7689E /* ChatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailVC.swift; sourceTree = "<group>"; };
+		B7DA071C20626C2B00D7689E /* RCDataSourceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCDataSourceHelper.swift; sourceTree = "<group>"; };
+		B7DA071E20626E2800D7689E /* RCDataSourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCDataSourceRequest.swift; sourceTree = "<group>"; };
 		C2E104768B7A508C05EB0F4D /* Pods_BeautyMeeting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautyMeeting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -370,6 +378,9 @@
 			children = (
 				955AA72C2021954700E8E7A9 /* Views */,
 				955AA6982018679800E8E7A9 /* ChatVC.swift */,
+				B7DA071C20626C2B00D7689E /* RCDataSourceHelper.swift */,
+				B7DA071620626AF100D7689E /* ChatListVC.swift */,
+				B7DA071A20626B6E00D7689E /* ChatDetailVC.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -574,6 +585,7 @@
 				955AA7A3202BE28000E8E7A9 /* NetworkRequestConfig.swift */,
 				955AA7A4202BE28000E8E7A9 /* UserRequest.swift */,
 				95A9D8EB2057A532003218C1 /* VideoRequest.swift */,
+				B7DA071E20626E2800D7689E /* RCDataSourceRequest.swift */,
 			);
 			path = NetBorrow;
 			sourceTree = "<group>";
@@ -848,9 +860,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeautyMeeting/Pods-BeautyMeeting-resources.sh",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RongCloud.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Emoji.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCConfig.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -881,6 +904,7 @@
 				957F990B205F4878003916D0 /* MeiHuiPlayVC.swift in Sources */,
 				955AA75C2021B48A00E8E7A9 /* Logging.m in Sources */,
 				95FD52D1204926FF005D15BB /* ForgetLoginPasswordVC.swift in Sources */,
+				B7DA071F20626E2800D7689E /* RCDataSourceRequest.swift in Sources */,
 				955AA6C320186F1300E8E7A9 /* NotificationName.swift in Sources */,
 				955AA7D4202C4E8400E8E7A9 /* OpenHtmlVC.swift in Sources */,
 				955AA76C2021B48A00E8E7A9 /* SPWaterProgressIndicatorView.m in Sources */,
@@ -897,6 +921,7 @@
 				955AA7AB202BE28000E8E7A9 /* HomeRequest.swift in Sources */,
 				955AA7A9202BE28000E8E7A9 /* CommonRequest.swift in Sources */,
 				95A9D8EE2058BF46003218C1 /* NoLoginShowView.swift in Sources */,
+				B7DA071B20626B6E00D7689E /* ChatDetailVC.swift in Sources */,
 				95E94D4F20493E8C00BAA27E /* MemberApplyVC.swift in Sources */,
 				955AA7C8202C4E8400E8E7A9 /* OperateFailView.swift in Sources */,
 				955AA7AC202BE28000E8E7A9 /* InvestmentRequest.swift in Sources */,
@@ -941,11 +966,13 @@
 				955AA6C120186F1300E8E7A9 /* URLPath.swift in Sources */,
 				955AA79520299E1D00E8E7A9 /* ActivityListVC.swift in Sources */,
 				955AA78B20270C4D00E8E7A9 /* DailyReadCell.swift in Sources */,
+				B7DA071D20626C2B00D7689E /* RCDataSourceHelper.swift in Sources */,
 				955AA6C520186F1300E8E7A9 /* Constants.swift in Sources */,
 				955AA7742021D57000E8E7A9 /* HomeNoticeView.swift in Sources */,
 				955AA7CD202C4E8400E8E7A9 /* TitleTextFieldView.swift in Sources */,
 				955AA793202996C000E8E7A9 /* UnionVC.swift in Sources */,
 				95FD52BB20491DF8005D15BB /* ModifyPasswordVC.swift in Sources */,
+				B7DA071720626AF100D7689E /* ChatListVC.swift in Sources */,
 				95DD819D20385EA000E6CC18 /* WRProxy.swift in Sources */,
 				955AA6C020186F1300E8E7A9 /* FontDefine.swift in Sources */,
 				955AA6BF20186F1300E8E7A9 /* ColorDefine.swift in Sources */,

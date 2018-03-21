@@ -64,4 +64,7 @@ struct PlatformKey {
   //智齿客服app key
   static let ZhiChiKeFuAppKey = "2362fd5551d340bbb08cff1b995e80d8"
   
+  //融云App key
+  static let RCAppKey = "c9kqb3rdcovaj"
+  
 }
