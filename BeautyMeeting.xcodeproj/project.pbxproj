@@ -1103,7 +1103,7 @@
 				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TanLinwei.BeautyMeeting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeautyCulture.MeiDuHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeautyMeeting-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1124,7 +1124,7 @@
 				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TanLinwei.BeautyMeeting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeautyCulture.MeiDuHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeautyMeeting-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
