@@ -29,6 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     window?.makeKeyAndVisible()
     
+    //如果是登录状态, 初始化融云SDK, 否则等待用户登录成功时初始化
+    if AccountManage.shared.isLogin {
+      RCDataSourceHelper.shared.connectRongCloud(token: AccountManage.shared.currentAccount()?.accessToken)
+    } else {
+      //api测试
+      RCDataSourceHelper.shared.connectRongCloud(token: "EpA0m54rSplkcQRT8vLUmcDzjjsTcdo8TNxSxIPoMRbFVpY9E94HcN4QkDo/OJFIdPb33B/FlJV7dawjPk1b3FsC6rp/nBHM")
+    }
     
     return true
   }

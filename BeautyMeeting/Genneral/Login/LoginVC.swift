@@ -179,6 +179,10 @@ extension LoginVC {
     if self.loginSucceedClosure != nil {
       self.loginSucceedClosure!()
     }
+    
+    //初始化融云SDK
+    RCDataSourceHelper.shared.connectRongCloud(token: account.accessToken)
+    
     dismissSelf()
   }
   
