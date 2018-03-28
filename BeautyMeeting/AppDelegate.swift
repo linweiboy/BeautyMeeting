@@ -93,10 +93,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIApplication.shared.applicationIconBadgeNumber = 0
     if RCIMClient.shared().getPushExtra(fromLaunchOptions: userInfo) != nil {
       //融云推送, 选择聊天界面
-      //      if let currentNav = mainVC.selectedViewController as? UINavigationController {
-      //        if currentNav.viewControllers.count == 1 {
-      //        }
-      //      }
+            if let currentNav = mainVC.selectedViewController as? UINavigationController {
+              if currentNav.viewControllers.count == 1 {
+              }
+            }
     }
     mainVC.selectedIndex = 1
   }
