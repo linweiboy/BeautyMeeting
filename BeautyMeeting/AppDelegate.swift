@@ -37,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       RCDataSourceHelper.shared.connectRongCloud(token: "EpA0m54rSplkcQRT8vLUmcDzjjsTcdo8TNxSxIPoMRbFVpY9E94HcN4QkDo/OJFIdPb33B/FlJV7dawjPk1b3FsC6rp/nBHM")
     }
     
+    //注册通知
+    let setting = UIUserNotificationSettings(types: UIUserNotificationType(rawValue: UIUserNotificationType.badge.rawValue | UIUserNotificationType.sound.rawValue | UIUserNotificationType.alert.rawValue), categories: nil)
+    application.registerUserNotificationSettings(setting)
+    
     return true
   }
 
@@ -60,6 +64,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
 
+  func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+    application.registerForRemoteNotifications()
+  }
+  
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    let da = NSData(data: deviceToken)
+    var token = da.description
+    token = token.replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: " ", with: "")
+    RCIMClient.shared().setDeviceToken(token)
+  }
+  
+  func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+    
+    //目前只有聊天有本地通知, 所以不做判断
+    if let currentNav = mainVC.selectedViewController as? UINavigationController {
+      if currentNav.viewControllers.count == 1 {
+        mainVC.selectedIndex = 1
+      } else {
+        if let chatNav = mainVC.childViewControllers[1] as? UINavigationController {
+          chatNav.tabBarItem.badgeValue = ""
+        }
+      }
+    }
+  }
+  
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    UIApplication.shared.applicationIconBadgeNumber = 0
+    if RCIMClient.shared().getPushExtra(fromLaunchOptions: userInfo) != nil {
+      //融云推送, 选择聊天界面
+      //      if let currentNav = mainVC.selectedViewController as? UINavigationController {
+      //        if currentNav.viewControllers.count == 1 {
+      //        }
+      //      }
+    }
+    mainVC.selectedIndex = 1
+  }
+  
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("注册通知失败")
+  }
 
 }
 
