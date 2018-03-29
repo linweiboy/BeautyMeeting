@@ -1,112 +1,107 @@
 //
-//  IntroductionVC.swift
+//  DailyReadVC.swift
 //  BeautyMeeting
 //
-//  Created by LinweiTan on 2018/2/6.
+//  Created by LinweiTan on 2018/2/4.
 //  Copyright © 2018年 TanLinwei. All rights reserved.
 //
 
 import UIKit
+import MJRefresh
 
-class IntroductionVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol {
+//每日美读
+class DailyReadVC: UIViewController, VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol{
+  
+  //LoadMoreDataProtocol
+//  internal typealias T = DailyReadModel
+//  internal var mainTableView:UITableView! = UITableView()
+//  internal var dataList:[DailyReadModel]! =  []
+//  internal var currentOffset:Int! = 0
   
   fileprivate let mainTableView = UITableView()
-  
+  fileprivate var dataList:[DailyReadModel] =  []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-      self.navigationItem.title = "美会介绍"
+      self.navigationItem.title = "每日美读"
       defaultConfig()
       popLastPage()
       createView()
       refreshData()
     }
-
+  
   @objc func refreshData() {
     showLoadingView(nil)
-    HomeRequest.homeListTypeCode(typeCode: "introduce") {[weak self](result) in
+    HomeRequest.homeListTypeCode(typeCode: "dailyreading") {[weak self](result) in
       guard let strongSelf = self else{return}
       strongSelf.hiddenLoadingView()
-//      strongSelf.mainTableView.mj_header.endRefreshing()
+      strongSelf.mainTableView.mj_header.endRefreshing()
       switch result {
       case .success(let json):
-        printLog(message: json)
-//        strongSelf.dataList.removeAll()
-//        strongSelf.dataList += DailyReadModel.parseList(json)
+        strongSelf.dataList.removeAll()
+        strongSelf.dataList += DailyReadModel.parseList(json)
         strongSelf.mainTableView.reloadData()
       case .failure(let errpr):
         strongSelf.showMessage(errpr.reason)
       }
     }
   }
-
+  
+  
 }
 
-extension IntroductionVC:UITableViewDelegate, UITableViewDataSource{
+extension DailyReadVC:UITableViewDelegate, UITableViewDataSource{
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return dataList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row < 2 {
-      let cell = tableView.dequeueReusableCell(withIdentifier: IntroductionCell.reuseIdentifier) as! IntroductionCell
-      return cell
-    }else{
-      let cell = UITableViewCell()
-      cell.textLabel?.text = indexPath.row == 2 ? "已开通城市" : "未开通城市"
-      cell.accessoryType = .disclosureIndicator
-      tableView.separatorStyle = .singleLine
-      return cell
-
+    let cell = tableView.dequeueReusableCell(withIdentifier: DailyReadCell.reuseIdentifier) as! DailyReadCell
+    if dataList.count != 0 {
+      let model = dataList[indexPath.row]
+      cell.showData(model)
     }
+    return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if indexPath.row < 2 {
-      return 115.ratioHeight
-    }
-    return 45.ratioHeight
+    return 85.ratioHeight
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
-    switch indexPath.row {
-    case 0,1:
-      break
-    case 2:
-      let vc = OpenCityVC()
-      pushTo(vc)
-    case 3:
-      let vc = NotOpenCityVC()
-      pushTo(vc)
-    default:break;
+    if  dataList.count != 0 {
+      let model = dataList[indexPath.row]
+      let htmlVC = OpenHtmlVC()
+      htmlVC.navItemTitle = model.title
+      htmlVC.htmlContent = model.description
+      pushTo(htmlVC)
     }
-    
   }
-  
+
 }
 
 
-
-
-extension IntroductionVC{
+extension DailyReadVC {
   
-  func createView(){
+  func createView() {
     mainTableView.separatorStyle = .none
     if #available(iOS 11.0, *) {
       mainTableView.contentInsetAdjustmentBehavior = .never
     }
-    mainTableView.clearOtioseSeparatorLine()
     mainTableView.delegate = self
     mainTableView.dataSource = self
     mainTableView.showsHorizontalScrollIndicator = false
     mainTableView.showsVerticalScrollIndicator = false
     mainTableView.backgroundColor =  .backGround
-    mainTableView.register(IntroductionCell.self)
+    mainTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
+    mainTableView.register(DailyReadCell.self)
     self.view.addSubview(mainTableView)
     mainTableView.snp.makeConstraints { (make) in
       make.left.right.bottom.equalTo(view)
       make.top.equalTo(0)
     }
   }
+  
 }

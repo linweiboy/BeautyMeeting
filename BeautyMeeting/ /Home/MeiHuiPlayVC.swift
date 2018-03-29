@@ -84,13 +84,12 @@ class PlayCell: UITableViewCell, ReusableView {
   }
   override init(style: UITableViewCellStyle, reuseIdentifier: String?){
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    self.backgroundColor = .white
     
-    addSubview(titLB)
-    titLB.decorateStyleOfLB(title: "美洲环湖哈还是", textColor: .black, textFont: 12.ratioHeight)
-    titLB.snp.makeConstraints { (make) in
-      make.top.equalTo(10)
-      make.left.equalTo(13.ratioHeight)
+    let backView = UIView()
+    backView.backgroundColor = UIColor.backGround
+    addSubview(backView)
+    backView.snp.makeConstraints { (make) in
+      make.edges.equalTo(self)
     }
     
     addSubview(guessIMV)
@@ -98,20 +97,10 @@ class PlayCell: UITableViewCell, ReusableView {
     guessIMV.layer.masksToBounds = true
     guessIMV.image = UIImage(named: "home_guess")
     guessIMV.snp.makeConstraints { (make) in
-      make.top.equalTo(titLB.snp.bottom).offset(5)
+      make.top.equalTo(backView.snp.top).offset(10)
       make.left.equalTo(13.ratioHeight)
       make.right.equalTo(-13.ratioHeight)
-      make.bottom.equalTo(self.snp.bottom).offset(-10)
-    }
-    
-    let lineView = UIView()
-    addSubview(lineView)
-    lineView.backgroundColor = UIColor.separateLine
-    lineView.snp.makeConstraints { (make) in
-      make.bottom.equalTo(self)
-      make.left.equalTo(13.ratioHeight)
-      make.right.equalTo(-13.ratioHeight)
-      make.height.equalTo(1)
+      make.bottom.equalTo(backView.snp.bottom).offset(-10)
     }
     
   }

@@ -55,11 +55,16 @@ class BaseRequest:SessionManager {
   
   ///post网络请求
   func postRequest(url urlStr:String, parameters:Dictionary<String,String>, completionHandler:@escaping (RequestResult<JSON>) -> ()) {
+    printLog(message: "签名前参数\(parameters)")
     let para = addCommonParamFor(parameters: parameters)
+    printLog(message: "签名前添加参数\(para)")
     let rot = Router(baseURL:XZGURL.server.currentUrl,path: urlStr, parameters: para)
+    printLog(message: "签名后\(rot)")
     request(rot)
     .responseJSON { (response) in
        self.handleResult(response: response, completionHandler: completionHandler)
+      printLog(message: response.result)
+      printLog(message: response.request)
     }
   }
   

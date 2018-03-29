@@ -102,7 +102,7 @@ extension XZGURL {
   //发送验证码(登录或者注册)
   static let sendVerify_LoginAndRegister = "wd_api/userCenter/sendVerifyForLoginOn"
   //注册
-  static let register = "wd_api/userCenter/registerOn"
+  static let register = "user/register"
   //注册 检查手机号码是否已经注册
   static let register_CheckMobile = "wd_api/userCenter/checkMobileOn"
   //登录

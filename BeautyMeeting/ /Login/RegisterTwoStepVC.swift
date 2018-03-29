@@ -52,23 +52,23 @@ extension  RegisterTwoStepVC {
       showMessage("请输入正确格式的验证码！")
       return
     }
-    userRegisterNetWorking()
+    
     //校验验证码是否正确
-//    UserRequest.checkVerifOn(userPhone, verifyNo: verifyNumTF.text!) {[weak self] (result) in
-//      guard let strongSelf = self else {return}
-//      strongSelf.hiddenLoadingView()
-//      switch result {
-//      case .success(let json):
-//        let model = CommonModel(json: json)
-//        if model.isSuccess {
-//          strongSelf.userRegisterNetWorking()
-//        }else {
-//          strongSelf.showMessage(model.message)
-//        }
-//      case .failure(let error):
-//        strongSelf.showMessage(error.reason)
-//      }
-//    }
+    UserRequest.checkVerifOn(userPhone, verifyNo: verifyNumTF.text!) {[weak self] (result) in
+      guard let strongSelf = self else {return}
+      strongSelf.hiddenLoadingView()
+      switch result {
+      case .success(let json):
+        let model = CommonModel(json: json)
+        if model.isSuccess {
+          strongSelf.userRegisterNetWorking()
+        }else {
+          strongSelf.showMessage(model.message)
+        }
+      case .failure(let error):
+        strongSelf.showMessage(error.reason)
+      }
+    }
   }
   
   //注册申请
@@ -83,14 +83,13 @@ extension  RegisterTwoStepVC {
       strongSelf.hiddenLoadingView()
       switch result {
       case .success(let json):
-        printLog(message: json)
         //保存用户信息
         let account = UserAccount(json: json["data"])
-//        AccountManage.shared.saveAccount(account)
-//        //界面消失
-//        strongSelf.dismissSelf()
-//        strongSelf.hidesBottomBarWhenPushed = false
-//        AppDelegate.shared.mainVC.selectedIndex = 0
+        AccountManage.shared.saveAccount(account)
+        //界面消失
+        strongSelf.dismissSelf()
+        strongSelf.hidesBottomBarWhenPushed = false
+        AppDelegate.shared.mainVC.selectedIndex = 0
       case .failure(let error):
         strongSelf.showMessage(error.reason)
       }

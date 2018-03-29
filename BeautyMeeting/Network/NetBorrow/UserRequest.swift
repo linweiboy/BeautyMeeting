@@ -39,10 +39,10 @@ class UserRequest:ProtocolRequestUnifyHandle {
   ///注册 mobile=注册手机号 password=密码 手机验证码=verifyNo 邀请人手机号码(邀请码)=referrer(可选)
   ///ct=客户端标识(可选)  bt=业务标识(可选)
   class func userRegister(_ mobile:String,password:String,verifyNo:String,referrer:String? ,ct:ClientIdentifier?,bt:BusinessIdentifier?, completionHandler:@escaping (RequestResult<JSON>)->()) {
-    var para = ["mobile":mobile,"password":password,"verifyNo":verifyNo]
-    if referrer != nil {para["referrer"] = referrer}
-    if ct != nil {para["ct"] = ct!.rawValue}
-    if bt != nil {para["bt"] = bt!.rawValue}
+    let para = ["mobile":mobile,"password":password,"verifyNo":verifyNo]
+//    if referrer != nil {para["referrer"] = referrer}
+//    if ct != nil {para["ct"] = ct!.rawValue}
+//    if bt != nil {para["bt"] = bt!.rawValue}
     unifyPostRequest(parameter: para, urlStr: XZGURL.register, handle: completionHandler)
   }
   

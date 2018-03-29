@@ -70,26 +70,26 @@ class RegisterVC: UIViewController,CustomerProtocol {
       return
     }
     
-//    showLoadingView(nil)
-//    UserRequest.userRegisterCheckMobile(phone) {[weak self] (result) in
-//      guard let strongSelf = self else {return}
-//      strongSelf.hiddenLoadingView()
-//      switch result {
-//      case .success(let json):
-//        let result = json["data"]["isReg"].boolValue
-//        if result {
-//          strongSelf.showMessage("该号码已经注册！")
-//        }else {
+    showLoadingView(nil)
+    UserRequest.userRegisterCheckMobile(phone) {[weak self] (result) in
+      guard let strongSelf = self else {return}
+      strongSelf.hiddenLoadingView()
+      switch result {
+      case .success(let json):
+        let result = json["data"]["isReg"].boolValue
+        if result {
+          strongSelf.showMessage("该号码已经注册！")
+        }else {
           let twoStep = RegisterTwoStepVC()
-//          twoStep.imageUrl = strongSelf.bannarUrl
+          twoStep.imageUrl = strongSelf.bannarUrl
           twoStep.userPhone = phone
           twoStep.userPassword = pas
-          self.pushTo(twoStep)
-//        }
-//      case .failure(let error):
-//        strongSelf.showMessage(error.reason)
-//      }
-//    }
+          strongSelf.pushTo(twoStep)
+        }
+      case .failure(let error):
+        strongSelf.showMessage(error.reason)
+      }
+    }
   }
   
   //去登录  只有当 present进来时能响应这个方法

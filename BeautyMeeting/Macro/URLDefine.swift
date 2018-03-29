@@ -12,8 +12,8 @@
 struct XZGURL {
   struct server {
     static let formal = "http://b.oof.com.cn/"      //正式
-    static let huidu = "http://114.55.158.120"        //灰度
-    static var currentUrl:String { return formal }
+    static let huidu = "http://222.73.216.198/meiduhui/index.php/"        //灰度
+    static var currentUrl:String { return huidu }
   }
 }
 

@@ -48,40 +48,24 @@ extension IntroductionVC:UITableViewDelegate, UITableViewDataSource{
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row < 2 {
+    if indexPath.row <= 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: IntroductionCell.reuseIdentifier) as! IntroductionCell
+      cell.showData("美读会总会介绍")
       return cell
     }else{
       let cell = UITableViewCell()
-      cell.textLabel?.text = indexPath.row == 2 ? "已开通城市" : "未开通城市"
+      cell.textLabel?.text = "未开通城市"
       cell.accessoryType = .disclosureIndicator
       tableView.separatorStyle = .singleLine
       return cell
-
     }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if indexPath.row < 2 {
+    if indexPath.row <= 1 {
       return 115.ratioHeight
     }
     return 45.ratioHeight
-  }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: false)
-    switch indexPath.row {
-    case 0,1:
-      break
-    case 2:
-      let vc = OpenCityVC()
-      pushTo(vc)
-    case 3:
-      let vc = NotOpenCityVC()
-      pushTo(vc)
-    default:break;
-    }
-    
   }
   
 }
@@ -96,12 +80,12 @@ extension IntroductionVC{
     if #available(iOS 11.0, *) {
       mainTableView.contentInsetAdjustmentBehavior = .never
     }
-    mainTableView.clearOtioseSeparatorLine()
     mainTableView.delegate = self
     mainTableView.dataSource = self
     mainTableView.showsHorizontalScrollIndicator = false
     mainTableView.showsVerticalScrollIndicator = false
     mainTableView.backgroundColor =  .backGround
+    mainTableView.clearOtioseSeparatorLine()
     mainTableView.register(IntroductionCell.self)
     self.view.addSubview(mainTableView)
     mainTableView.snp.makeConstraints { (make) in
