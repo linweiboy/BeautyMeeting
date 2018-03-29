@@ -276,6 +276,7 @@
 		95FD52D420492755005D15BB /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		95FD52D820492D29005D15BB /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		95FD52D920492D29005D15BB /* NotReceiveVerifyNumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotReceiveVerifyNumView.swift; sourceTree = "<group>"; };
+		B7A22953206B94A500990641 /* BeautyMeeting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeautyMeeting.entitlements; sourceTree = "<group>"; };
 		B7DA071620626AF100D7689E /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
 		B7DA071A20626B6E00D7689E /* ChatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailVC.swift; sourceTree = "<group>"; };
 		B7DA071C20626C2B00D7689E /* RCDataSourceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCDataSourceHelper.swift; sourceTree = "<group>"; };
@@ -333,6 +334,7 @@
 		955AA6602018601900E8E7A9 /* BeautyMeeting */ = {
 			isa = PBXGroup;
 			children = (
+				B7A22953206B94A500990641 /* BeautyMeeting.entitlements */,
 				955AA66D2018601900E8E7A9 /* Info.plist */,
 				955AA6612018601900E8E7A9 /* AppDelegate.swift */,
 				955AA68F2018655300E8E7A9 /* MainTabBarVC.swift */,
@@ -773,6 +775,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1134,6 +1141,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BeautyMeeting/BeautyMeeting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
@@ -1155,6 +1163,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BeautyMeeting/BeautyMeeting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29G47PJR87;
 				INFOPLIST_FILE = BeautyMeeting/Info.plist;
