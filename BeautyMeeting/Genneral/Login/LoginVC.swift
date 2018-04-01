@@ -181,7 +181,7 @@ extension LoginVC {
     }
     
     //初始化融云SDK
-    RCDataSourceHelper.shared.connectRongCloud(token: account.accessToken)
+//    RCDataSourceHelper.shared.connectRongCloud(token: account.accessToken)
     
     dismissSelf()
   }

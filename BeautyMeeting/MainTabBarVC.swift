@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 class MainTabBarVC: UITabBarController,UITabBarControllerDelegate,LoginExpiredProtocol,LoadingPresenterProtocol {
   
   fileprivate let homeVC = HomeVC()
-  fileprivate let chatVC = ChatListVC()
+  fileprivate let chatVC = ChatVC()
   fileprivate let videoVC = VideoVC()
   fileprivate let userVC = UserVC()
   fileprivate let mallVC = MallHomeVC()
