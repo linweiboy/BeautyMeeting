@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     
     
-    /**
+    
     //如果是登录状态, 初始化融云SDK, 否则等待用户登录成功时初始化
     if AccountManage.shared.isLogin {
       RCDataSourceHelper.shared.connectRongCloud(token: AccountManage.shared.currentAccount()?.accessToken)
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //注册通知
     let setting = UIUserNotificationSettings(types: UIUserNotificationType(rawValue: UIUserNotificationType.badge.rawValue | UIUserNotificationType.sound.rawValue | UIUserNotificationType.alert.rawValue), categories: nil)
     application.registerUserNotificationSettings(setting)
-    */
+    
     
     return true
   }
