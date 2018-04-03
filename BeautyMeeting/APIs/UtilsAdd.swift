@@ -114,3 +114,39 @@ public class RoundCornerIMV: UIImageView {
   
 }
 
+//一级页面未读消息提示 (小红点)
+extension UITabBar {
+  func showBadgeOnItem(index itemIndex: NSInteger) {
+    self.removeBadgeOnItem(index: itemIndex)
+    let badgeV = UIView()
+    badgeV.tag = 1011 + itemIndex
+    badgeV.layer.cornerRadius = 5.0
+    badgeV.backgroundColor = .red
+    
+    let tabFrame = self.frame
+    
+    let percentX = (CGFloat(itemIndex) + 0.6) / 5.0
+    let badgeX = CGFloat(ceilf(Float(percentX) * Float(tabFrame.size.width)))
+    let badgeY = CGFloat(ceilf(0.1 * Float(tabFrame.size.height)))
+    badgeV.frame = CGRect(x: badgeX, y: badgeY, width: 10.0, height: 10.0)
+    self.addSubview(badgeV)
+    
+  }
+  
+  func hideBadgeOnItem(index itemIndex: NSInteger) {
+    self.removeBadgeOnItem(index: itemIndex)
+  }
+  
+  private func removeBadgeOnItem(index itemIndex: NSInteger) {
+    
+    for vv in self.subviews {
+      if vv.tag == 1011 + itemIndex {
+        vv.removeFromSuperview()
+        return
+      }
+    }
+    
+    
+  }
+}
+

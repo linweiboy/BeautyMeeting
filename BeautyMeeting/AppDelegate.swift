@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     window?.makeKeyAndVisible()
     
+    
+    /**
     //如果是登录状态, 初始化融云SDK, 否则等待用户登录成功时初始化
     if AccountManage.shared.isLogin {
       RCDataSourceHelper.shared.connectRongCloud(token: AccountManage.shared.currentAccount()?.accessToken)
@@ -40,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //注册通知
     let setting = UIUserNotificationSettings(types: UIUserNotificationType(rawValue: UIUserNotificationType.badge.rawValue | UIUserNotificationType.sound.rawValue | UIUserNotificationType.alert.rawValue), categories: nil)
     application.registerUserNotificationSettings(setting)
+    */
     
     return true
   }
@@ -82,9 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if currentNav.viewControllers.count == 1 {
         mainVC.selectedIndex = 1
       } else {
-        if let chatNav = mainVC.childViewControllers[1] as? UINavigationController {
-          chatNav.tabBarItem.badgeValue = ""
-        }
+        mainVC.tabBarController?.tabBar.showBadgeOnItem(index: 1)
       }
     }
   }
@@ -93,12 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIApplication.shared.applicationIconBadgeNumber = 0
     if RCIMClient.shared().getPushExtra(fromLaunchOptions: userInfo) != nil {
       //融云推送, 选择聊天界面
-            if let currentNav = mainVC.selectedViewController as? UINavigationController {
-              if currentNav.viewControllers.count == 1 {
-              }
-            }
+         
     }
-    mainVC.selectedIndex = 1
   }
   
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
