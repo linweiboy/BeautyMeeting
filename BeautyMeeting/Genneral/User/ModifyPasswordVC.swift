@@ -80,7 +80,7 @@ class ModifyPasswordVC: UIViewController,PopVCSetProtocol,VcDefaultConfigProtoco
     //修改交易密码
     if self.modifyPurposeType == .modifyTradePS  {
       showLoadingView(nil)
-      UserRequest.userModifyTradePassword(oldOutPassword: originPSTF.text!, newOutPassword: confirmPSTF.text!, completionHandler: {[weak self] (result) in
+      UserRequest.userModifyLoginPassword(oldPassword: originPSTF.text!, newPassword: confirmPSTF.text!, completionHandler: {[weak self] (result) in
         guard let strongSelf = self else {return}
         strongSelf.hiddenLoadingView()
         switch result {

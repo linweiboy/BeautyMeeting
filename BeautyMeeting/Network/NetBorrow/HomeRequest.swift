@@ -41,23 +41,5 @@ class HomeRequest:ProtocolRequestUnifyHandle {
   
   
   
-  ///今日是否签到
-  class func homeWhetherIsSign(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: [:], urlStr: XZGURL.homeTodaySign, handle: completionHandler)
-  }
-  
-  ///签到
-  class func homeSign(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: [:], urlStr: XZGURL.homeSign, handle: completionHandler)
-  }
-  
-  
-  
-  /// 小诸葛新首页 获取应用url列表
-  ///
-  /// - Parameter completionHandler: 回调
-  class func newHomePortal(completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: [:], urlStr: XZGURL.newHomePortal, handle: completionHandler)
-  }
 }
 

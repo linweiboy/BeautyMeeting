@@ -10,11 +10,11 @@
 class RCDataSourceRequest: ProtocolRequestUnifyHandle {
   
   class func getUserInfo(withUserId userId: String!, completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: ["userId": userId], urlStr: XZGURL.achieveBannarLink, handle: completionHandler)
+//    unifyPostRequest(parameter: ["userId": userId], urlStr: XZGURL.achieveBannarLink, handle: completionHandler)
   }
   
   class func getGroupInfo(withGroupId groupId: String!, completionHandler: @escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: ["groupId": groupId], urlStr: XZGURL.achieveBannarLink, handle: completionHandler)
+//    unifyPostRequest(parameter: ["groupId": groupId], urlStr: XZGURL.achieveBannarLink, handle: completionHandler)
   }
   
   

@@ -37,17 +37,17 @@ class ModifyPhoneNumVC: UIViewController,PopVCSetProtocol,VcDefaultConfigProtoco
       progressView.startCountDown()
     }
 //    currentUser.mobile
-    UserRequest.userGetVerifyCode("1300002827",operate: "更换手机号码", voice: BoolParameter.VoiceFalse) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success:
-        strongSelf.showMessage("短信验证码发送成功！")
-      case .failure(let error):
-        strongSelf.progressView.stopCountDown()
-        strongSelf.showMessage(error.reason)
-      }
-    }
+//    UserRequest.userGetVerifyCode("1300002827",operate: "更换手机号码", voice: BoolParameter.VoiceFalse) {[weak self] (result) in
+//      guard let strongSelf = self else {return}
+//      strongSelf.hiddenLoadingView()
+//      switch result {
+//      case .success:
+//        strongSelf.showMessage("短信验证码发送成功！")
+//      case .failure(let error):
+//        strongSelf.progressView.stopCountDown()
+//        strongSelf.showMessage(error.reason)
+//      }
+//    }
   }
   
   //下一步
@@ -84,20 +84,6 @@ class ModifyPhoneNumVC: UIViewController,PopVCSetProtocol,VcDefaultConfigProtoco
     
   }
   
-  //发送语音验证码
-  func oneNotReceiveVerifyNumBTClick() {
-    UserRequest.userGetVerifyCode(currentUser.mobile,operate: "更换手机号码", voice: BoolParameter.VoiceTrue){ [weak self] result in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success:
-        strongSelf.showMessage("请接听021-31590966来电获得验证码")
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-        strongSelf.progressView.stopCountDown()
-      }
-    }
-  }
 }
 
 
@@ -149,9 +135,6 @@ extension ModifyPhoneNumVC {
     }
     
     self.view.addSubview(notReceiveBackView)
-    notReceiveBackView.achieveVerifyNumClosure = { [unowned self] in
-      self.oneNotReceiveVerifyNumBTClick()
-    }
     notReceiveBackView.isHidden = true
     notReceiveBackView.backgroundColor = self.view.backgroundColor
     notReceiveBackView.snp.makeConstraints { (make) in

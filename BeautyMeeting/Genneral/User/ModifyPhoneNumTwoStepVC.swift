@@ -53,18 +53,6 @@ class ModifyPhoneNumTwoStepVC: UIViewController,VcDefaultConfigProtocol,PopVCSet
     guard let verifyStr = checkVerifyNum(verifyTF: verifyNumTF, target: self) else {
       return
     }
-    //校验验证码是否正确
-    showLoadingView(nil)
-    UserRequest.checkVerifOn(phoneStr, verifyNo: verifyStr) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success:
-        strongSelf.userModileCharger()
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
   }
   
   //提交修改手机号码请求
@@ -83,7 +71,7 @@ class ModifyPhoneNumTwoStepVC: UIViewController,VcDefaultConfigProtocol,PopVCSet
     
     func handelResult() {
       //重新保存本地用户名
-      let account = UserAccount(username: currentUser.username, accessToken:currentUser.accessToken, mobile: phoneNumTF.text!,id:currentUser.id)
+      let account = UserAccount(username: currentUser.head_img_url, accessToken:currentUser.accessToken, mobile: phoneNumTF.text!,id:currentUser.id,role:currentUser.role)
       AccountManage.shared.saveAccount(account)
       
       updataClickSoure?()
@@ -108,38 +96,22 @@ class ModifyPhoneNumTwoStepVC: UIViewController,VcDefaultConfigProtocol,PopVCSet
     if progressView.isCountingDown != true {
       progressView.startCountDown()
     }
-    showLoadingView(nil)
-    UserRequest.userGetVerifyCode(phoneStr,operate: "更换手机号码", voice: BoolParameter.VoiceFalse) {[weak self] result in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let model = CommonModel(json: json)
-        if model.isSuccess {
-          strongSelf.showMessage("短信验证码发送成功！")
-        }
-      case .failure(let error):
-        strongSelf.progressView.stopCountDown()
-        strongSelf.showMessage(error.reason)
-      }
-    }
+//    showLoadingView(nil)
+//    UserRequest.userGetVerifyCode(phoneStr,operate: "更换手机号码", voice: BoolParameter.VoiceFalse) {[weak self] result in
+//      guard let strongSelf = self else {return}
+//      strongSelf.hiddenLoadingView()
+//      switch result {
+//      case .success(let json):
+//        let model = CommonModel(json: json)
+//        if model.isSuccess {
+//          strongSelf.showMessage("短信验证码发送成功！")
+//        }
+//      case .failure(let error):
+//        strongSelf.progressView.stopCountDown()
+//        strongSelf.showMessage(error.reason)
+//      }
+//    }
   }
-  
-  //发送语音验证码
-  func oneNotReceiveVerifyNumBTClick() {
-    showLoadingView(nil)
-    UserRequest.userGetVerifyCode(phoneNumTF.text!,operate: "更换手机号码", voice: BoolParameter.VoiceTrue) {[weak self] result in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success:
-        strongSelf.showMessage("请接听021-31590966来电获得验证码")
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
-  }
-  
   
   func addShowViews() {
     let headView = ModifyPhoneNumHeadView(selectedIndex: 1)
@@ -189,9 +161,6 @@ class ModifyPhoneNumTwoStepVC: UIViewController,VcDefaultConfigProtocol,PopVCSet
     }
     
     self.view.addSubview(notReceiveBackView)
-    notReceiveBackView.achieveVerifyNumClosure = { [weak self] in
-      self!.oneNotReceiveVerifyNumBTClick()
-    }
     notReceiveBackView.isHidden = true
     notReceiveBackView.backgroundColor = self.view.backgroundColor
     notReceiveBackView.snp.makeConstraints { (make) in

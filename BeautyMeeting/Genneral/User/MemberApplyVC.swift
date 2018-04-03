@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberApplyVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
+class MemberApplyVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol,LoadingPresenterProtocol {
 
   fileprivate let nameTF = UITextField()
   fileprivate let idCardTF = UITextField()
@@ -27,8 +27,26 @@ class MemberApplyVC: UIViewController,VcDefaultConfigProtocol,PopVCSetProtocol {
   
   //下一步点击事件
   @objc func btnClick() {
-    let vc = CashierVC()
-    pushTo(vc)
+    
+    UserRequest.userMemberApply(nameTF.text!, sex: "2", idCard: idCardTF.text!, address: addressTF.text!, referrer_mobile: applyCityTF.text!) { [weak self](result) in
+      guard let strongSelf = self else {return}
+      strongSelf.hiddenLoadingView()
+      switch result {
+      case .success(let data):
+        printLog(message: data)
+//        strongSelf.handleSuccess(resultJson:data)
+      case .failure(let error):
+        strongSelf.showMessage(error.reason)
+      }
+
+      
+    }
+    
+    
+    
+    
+//    let vc = CashierVC()
+//    pushTo(vc)
   }
 
 }

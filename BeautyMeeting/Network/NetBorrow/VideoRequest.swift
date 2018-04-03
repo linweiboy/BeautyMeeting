@@ -9,9 +9,9 @@
 class VideoRequest:ProtocolRequestUnifyHandle {
   
   ///视频首页列表
-  class func videoList(completionHandler:@escaping (RequestResult<JSON>) -> ()) {
-    unifyPostRequest(parameter: [:], urlStr: XZGURL.videoHome, handle: completionHandler)
-  }
+//  class func videoList(completionHandler:@escaping (RequestResult<JSON>) -> ()) {
+//    unifyPostRequest(parameter: [:], urlStr: XZGURL.videoHome, handle: completionHandler)
+//  }
 
   
   

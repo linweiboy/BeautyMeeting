@@ -22,16 +22,16 @@ class VideoVC: UIViewController, VcDefaultConfigProtocol,LoadingPresenterProtoco
     }
 
   @objc func refreshData() {
-    VideoRequest.videoList { [weak self](result) in
-      guard let strongSelf = self else{return}
-      strongSelf.mainTableView.mj_header.endRefreshing()
-      switch result {
-      case .success(let json):
-        printLog(message: json)
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
+//    VideoRequest.videoList { [weak self](result) in
+//      guard let strongSelf = self else{return}
+//      strongSelf.mainTableView.mj_header.endRefreshing()
+//      switch result {
+//      case .success(let json):
+//        printLog(message: json)
+//      case .failure(let error):
+//        strongSelf.showMessage(error.reason)
+//      }
+//    }
   }
   
   

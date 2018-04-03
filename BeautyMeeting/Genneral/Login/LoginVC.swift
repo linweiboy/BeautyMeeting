@@ -145,11 +145,12 @@ extension LoginVC {
       return
     }
     showLoadingView(nil)
-    UserRequest.userLogin(accountNameTF.text!, password: passwordTF.text!, ct: .IOS) { [weak self](result) in
+    UserRequest.userLogin(accountNameTF.text!, password: passwordTF.text!) { [weak self](result) in
       guard let strongSelf = self else {return}
       strongSelf.hiddenLoadingView()
       switch result {
       case .success(let data):
+        printLog(message: data)
         strongSelf.handleSuccess(resultJson:data)
       case .failure(let error):
         strongSelf.showMessage(error.reason)
@@ -160,14 +161,14 @@ extension LoginVC {
   
   func handleSuccess(resultJson:JSON) {
     let account = UserAccount(json: resultJson["data"])
-    //如果是手势密码页面的忘记密码和切换账号进来的
-    if self.loginActionType == .GesturePasswordForgetPSOrSwitchAccount {
-      let account = AccountManage.shared.currentAccount()!
-      //如果是同一个账号 就把这个账号的手势密码清除掉
-      if account.mobile == account.mobile {
-        GesturePasswordManage.removePasswordWithKey(account.mobile)
-      }
-    }
+//    //如果是手势密码页面的忘记密码和切换账号进来的
+//    if self.loginActionType == .GesturePasswordForgetPSOrSwitchAccount {
+//      let account = AccountManage.shared.currentAccount()!
+//      //如果是同一个账号 就把这个账号的手势密码清除掉
+//      if account.mobile == account.mobile {
+//        GesturePasswordManage.removePasswordWithKey(account.mobile)
+//      }
+//    }
     
     AccountManage.shared.saveAccount(account)
     

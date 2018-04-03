@@ -38,25 +38,25 @@ class ForgetLoginPasswordVC: UIViewController,VcDefaultConfigProtocol,PopVCSetPr
       showMessage("请输入正确格式的验证码!")
       return
     }
-    //校验验证码是否正确
-    UserRequest.checkVerifOn(phoneNumTF.text!, verifyNo: verifyNumTF.text!) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let model = CommonModel(json: json)
-        if model.isSuccess {
-          let twoStepVC = ForgetLoginPasswordTwoStepVC()
-          twoStepVC.phoneNumber = strongSelf.phoneNumTF.text
-          twoStepVC.verityNumber = strongSelf.verifyNumTF.text
-          strongSelf.pushTo(twoStepVC)
-        }else{
-          strongSelf.showMessage(model.message)
-        }
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
+//    //校验验证码是否正确
+//    UserRequest.checkVerifOn(phoneNumTF.text!, verifyNo: verifyNumTF.text!) {[weak self] (result) in
+//      guard let strongSelf = self else {return}
+//      strongSelf.hiddenLoadingView()
+//      switch result {
+//      case .success(let json):
+//        let model = CommonModel(json: json)
+//        if model.isSuccess {
+//          let twoStepVC = ForgetLoginPasswordTwoStepVC()
+//          twoStepVC.phoneNumber = strongSelf.phoneNumTF.text
+//          twoStepVC.verityNumber = strongSelf.verifyNumTF.text
+//          strongSelf.pushTo(twoStepVC)
+//        }else{
+//          strongSelf.showMessage(model.message)
+//        }
+//      case .failure(let error):
+//        strongSelf.showMessage(error.reason)
+//      }
+//    }
   }
   
   //发送验证码倒计时
@@ -71,41 +71,9 @@ class ForgetLoginPasswordVC: UIViewController,VcDefaultConfigProtocol,PopVCSetPr
       progressView.startCountDown()
     }
     
-    UserRequest.userSendVerifyNumForResetLoginPassword(phoneStr, voice: BoolParameter.VoiceFalse) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let model = CommonModel(json: json)
-        if model.isSuccess {
-          strongSelf.showMessage("短信验证码发送成功！")
-        }else{
-          strongSelf.showMessage(model.message)
-          strongSelf.progressView.stopCountDown()
-        }
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-        strongSelf.progressView.stopCountDown()
-      }
-    }
   }
+
   
-  //发送语音验证码
-  func oneNotReceiveVerifyNumBTClick() {
-    UserRequest.userSendVerifyNumForResetLoginPassword(phoneNumTF.text!, voice: BoolParameter.VoiceTrue) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let model = CommonModel(json: json)
-        if model.isSuccess {
-          strongSelf.showMessage("请接听021-31590966来电获得验证码")
-        }
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
-  }
   
   
   func addShowViews() {
@@ -147,9 +115,6 @@ class ForgetLoginPasswordVC: UIViewController,VcDefaultConfigProtocol,PopVCSetPr
       make.height.equalTo(CGDefine.height.textField)
     }
     self.view.addSubview(notReceiveBackView)
-    notReceiveBackView.achieveVerifyNumClosure = {[unowned self] in
-      self.oneNotReceiveVerifyNumBTClick()
-    }
     notReceiveBackView.isHidden = true
     notReceiveBackView.backgroundColor = self.view.backgroundColor
     notReceiveBackView.snp.makeConstraints { (make) in

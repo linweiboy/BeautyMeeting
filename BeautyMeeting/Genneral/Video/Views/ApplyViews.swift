@@ -32,17 +32,20 @@ class ApplyView: UIView {
       make.height.equalTo(40.ratioHeight)
     }
     
+    sixTF.isEnabled = false
     let sixView = ApplyTextFiledView(titleStr: "性      别", textTF: sixTF)
     sixTF.decorateStyleOfTF(placeholderTitle: "请输入性别", placeholderColor: UIColor.gray, keyboardType: .default, borderStyle: .none, secureTextEntry: false, textColor: .black, textFont: 13.ratioHeight)
     addSubview(sixView)
+    sixTF.text = "女"
+    
     sixView.snp.makeConstraints { (make) in
       make.top.equalTo(idCradView.snp.bottom)
       make.left.right.equalTo(self)
       make.height.equalTo(40.ratioHeight)
     }
     
-    let cityView = ApplyTextFiledView(titleStr: "申请城市", textTF: applyCityTF)
-    applyCityTF.decorateStyleOfTF(placeholderTitle: "请输入申请城市", placeholderColor: UIColor.gray, keyboardType: .default, borderStyle: .none, secureTextEntry: false, textColor: .black, textFont: 13.ratioHeight)
+    let cityView = ApplyTextFiledView(titleStr: "推 荐 人", textTF: applyCityTF)
+    applyCityTF.decorateStyleOfTF(placeholderTitle: "请输入你的推荐人手机号", placeholderColor: UIColor.gray, keyboardType: .default, borderStyle: .none, secureTextEntry: false, textColor: .black, textFont: 13.ratioHeight)
     addSubview(cityView)
     cityView.snp.makeConstraints { (make) in
       make.top.equalTo(sixView.snp.bottom)

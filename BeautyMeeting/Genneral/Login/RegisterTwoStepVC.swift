@@ -78,7 +78,7 @@ extension  RegisterTwoStepVC {
     if isShowInviteTF && !inviteTF.isEmpty  {
       referrer = inviteTF.text
     }
-    UserRequest.userRegister(userPhone, password: userPassword, verifyNo: verifyNumTF.text!, referrer: referrer, ct: .IOS, bt: nil) {[weak self] (result) in
+    UserRequest.userRegister(userPhone, password: userPassword, verifyNo: verifyNumTF.text!, referrer: referrer) {[weak self] (result) in
       guard let strongSelf = self else {return}
       strongSelf.hiddenLoadingView()
       switch result {
@@ -86,11 +86,11 @@ extension  RegisterTwoStepVC {
         printLog(message: json)
         //保存用户信息
         let account = UserAccount(json: json["data"])
-//        AccountManage.shared.saveAccount(account)
-//        //界面消失
-//        strongSelf.dismissSelf()
-//        strongSelf.hidesBottomBarWhenPushed = false
-//        AppDelegate.shared.mainVC.selectedIndex = 0
+        AccountManage.shared.saveAccount(account)
+        //界面消失
+        strongSelf.dismissSelf()
+        strongSelf.hidesBottomBarWhenPushed = false
+        AppDelegate.shared.mainVC.selectedIndex = 0
       case .failure(let error):
         strongSelf.showMessage(error.reason)
       }
@@ -121,47 +121,28 @@ extension  RegisterTwoStepVC {
     view.showView()
   }
   
-  //点击获取语音验证码
-  func oneNotReceiveVerifyNumBTClick() {
-    UserRequest.userSendVerifyNumForLoginAndRegister(userPhone, voice: BoolParameter.VoiceTrue) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let isNewUser = json["data"]["isNewUser"].boolValue
-        if isNewUser {
-          strongSelf.showMessage("请接听021-31590966来电获得验证码")
-        }else {
-          strongSelf.showMessage("该用户已注册！")
-        }
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-      }
-    }
-  }
-  
   //获取短信验证码
   @objc func entryCountDownClick(_ bt:UIButton) {
     if progressView.isCountingDown != true {
       progressView.startCountDown()
     }
-    UserRequest.userSendVerifyNumForLoginAndRegister(userPhone, voice: BoolParameter.VoiceFalse) {[weak self] (result) in
-      guard let strongSelf = self else {return}
-      strongSelf.hiddenLoadingView()
-      switch result {
-      case .success(let json):
-        let isNewUser = json["data"]["isNewUser"].boolValue
-        if isNewUser {
-          strongSelf.showMessage("短信验证码发送成功！")
-        }else {
-          strongSelf.progressView.stopCountDown()
-          strongSelf.showMessage("该用户已注册！")
-        }
-      case .failure(let error):
-        strongSelf.showMessage(error.reason)
-        strongSelf.progressView.stopCountDown()
-      }
-    }
+//    UserRequest.userSendVerifyNumForLoginAndRegister(userPhone, voice: BoolParameter.VoiceFalse) {[weak self] (result) in
+//      guard let strongSelf = self else {return}
+//      strongSelf.hiddenLoadingView()
+//      switch result {
+//      case .success(let json):
+//        let isNewUser = json["data"]["isNewUser"].boolValue
+//        if isNewUser {
+//          strongSelf.showMessage("短信验证码发送成功！")
+//        }else {
+//          strongSelf.progressView.stopCountDown()
+//          strongSelf.showMessage("该用户已注册！")
+//        }
+//      case .failure(let error):
+//        strongSelf.showMessage(error.reason)
+//        strongSelf.progressView.stopCountDown()
+//      }
+//    }
   }
   
   func whetherInviteTF() {
@@ -228,9 +209,6 @@ extension RegisterTwoStepVC {
     }
     
     self.view.addSubview(notReceiveBackView)
-    notReceiveBackView.achieveVerifyNumClosure = { [unowned self] in
-      self.oneNotReceiveVerifyNumBTClick()
-    }
     notReceiveBackView.isHidden = true
     notReceiveBackView.snp.makeConstraints { (make) in
       make.top.equalTo(verifyNumBackView.snp.bottom)

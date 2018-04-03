@@ -32,7 +32,6 @@ class HomeVC: UIViewController,VcDefaultConfigProtocol,LoadingPresenterProtocol{
     //获取首页的推荐的产品
     HomeRequest.homeProductRecommendation { [weak self] (result) in
       guard let strongSelf = self else{return}
-      
       switch result {
       case .success(let json):
         strongSelf.portalModelArray.removeAll()
